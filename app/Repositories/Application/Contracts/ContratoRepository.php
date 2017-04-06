@@ -12,6 +12,7 @@ interface ContratoRepository extends RepositoryInterface
 {
     public function getAllWithRelations($columns = ['*']);
     public function getAllByVencimento($columns = ['*']);
+    public function getAllByVencimentoMail($columns = ['*']);
     public function searchWithRelations(array $attributes, $columns = ['*']);
     public function searchForAdditions(array $attributes, $columns = ['*']);
     public function createNormal(array $attributes);
