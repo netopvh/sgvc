@@ -258,6 +258,34 @@ class ContratoRepositoryEloquent extends BaseRepository implements ContratoRepos
 
     }
 
+    public function getAllByVencimento($columns = ['*'])
+    {
+        $todayWithDays = Carbon::now()->addDays(90);
+        $today = $todayWithDays->toDateString();
+        //dd($today);
+
+        if (!$this->allowedCache('getAllByVencimento') || $this->isSkippedCache()) {
+            return parent::with(['casa', 'empresas', 'aditivos', 'gestores', 'fiscais'])->scopeQuery(function ($query) use ($today) {
+                $query->whereDate('encerramento','<',$today);
+                $query->where('status', 'V');
+                $query->orderBy('encerramento', 'asc');
+                return $query;
+            })->paginate(7, $columns);
+        }
+
+        $key = $this->getCacheKey('getAllByVencimento', func_get_args());
+        $minutes = $this->getCacheMinutes();
+        $value = $this->getCacheRepository()->remember($key, $minutes, function () use ($columns, $today) {
+            return parent::with(['casa', 'empresas', 'aditivos', 'gestores', 'fiscais'])->scopeQuery(function ($query) use ($today) {
+                $query->whereDate('encerramento','<',$today);
+                $query->where('status', 'V');
+                $query->orderBy('encerramento', 'asc');
+                return $query;
+            })->paginate(7, $columns);
+        });
+
+        return $value;
+    }
 
     /**
      * @param $id

@@ -49,7 +49,7 @@
                     <table class="table table-bordered table-condensed">
                         <thead>
                         <tr>
-                            <th width="160">Número do Contrato</th>
+                            <th width="130">Número/Ano</th>
                             <th>Contratado</th>
                             <th>Contratante</th>
                             <th>Vencimento</th>
@@ -82,12 +82,7 @@
                                     @endif
                                 </td>
                                 <td>{{ $contrato->casa->name }}</td>
-                                <td>@if($contrato->aditivado == 'S')
-                                        {{ $contrato->aditivos->last()->encerramento }}
-                                    @else
-                                        {{ $contrato->encerramento }}
-                                    @endif
-                                </td>
+                                <td>{{ $contrato->encerramento }}</td>
                                 <td>
                                     @if($contrato->status == 'V')
                                         <span class="label label-success">Vigente</span>
