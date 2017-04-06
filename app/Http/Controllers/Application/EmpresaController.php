@@ -1,0 +1,111 @@
+<?php
+namespace App\Http\Controllers\Application;
+
+use App\Enum\Status;
+use App\Http\Controllers\Controller;
+use App\Repositories\Application\Contracts\EmpresaRepository;
+use Illuminate\Http\Request;
+use App\Contracts\Facades\ChannelLog as Log;
+use App\Exceptions\Access\GeneralException;
+use App\Enum\TipoPessoa;
+
+class EmpresaController extends Controller
+{
+
+    /**
+     * Instancia a repositório
+     *
+     * @var $empresa
+     */
+    protected $empresa;
+
+    /**
+     * Inicializa a classe usando o middleware de verificação de autenticação
+     *
+     * CasaController constructor.
+     */
+    public function __construct(EmpresaRepository $empresa)
+    {
+        $this->middleware('auth');
+        $this->empresa = $empresa;
+    }
+
+    /**
+     * Pagina inicial da tela de casas
+     *
+     * @return mixed
+     */
+    public function index(Request $request)
+    {
+        if (($search = $request->get('search'))) {
+            $data = $this->empresa->searchPaginate('razao', $search);
+        } else {
+            $data = $this->empresa->getAll();
+        }
+        return view('modules.application.cadastros.empresas.index')
+            ->withEmpresas($data)
+            ->withStatus(Status::getConstants());
+    }
+
+    /**
+     * Inserir um novo registro no banco de dados
+     *
+     * @return mixed
+     */
+    public function create()
+    {
+        return view('modules.application.cadastros.empresas.create')
+            ->withTipoPessoa(TipoPessoa::getConstants());
+    }
+
+    /**
+     * @param Request $request
+     * @return mixed
+     */
+    public function store(Request $request)
+    {
+        try{
+
+            if($this->empresa->create($request->all())){
+                Log::write('event','Empresa '. $request->name .' cadastrada por '. auth()->user()->name);
+            }
+            return redirect()->route('empresas.index');
+
+        }catch (GeneralException $e){
+            notify()->flash($e->getMessage(),'danger');
+            return redirect()->route('empresas.index');
+        }
+    }
+
+    /**
+     * Busca dados para edição
+     *
+     * @param $id
+     * @return mixed
+     */
+    public function edit($id)
+    {
+        try{
+            return view('modules.application.cadastros.empresas.edit')
+                ->withEmpresa($this->empresa->findEmpresa($id))
+                ->withTipoPessoa(TipoPessoa::getConstants())
+                ->withStatus(Status::getConstants());
+        }catch (GeneralException $e){
+            notify()->flash($e->getMessage(),'danger');
+            return redirect()->route('empresas.index');
+        }
+    }
+
+    public function update(Request $request, $id)
+    {
+        try{
+            if($this->empresa->update($request->all(), $id)){
+                Log::write('event','Empresa ' . $request->name .' alterada por '. auth()->user()->name);
+            }
+            return redirect()->route('empresas.index');
+        }catch (GeneralException $e){
+            notify()->flash($e->getMessage(),'danger');
+            return redirect()->route('empresas.index');
+        }
+    }
+}

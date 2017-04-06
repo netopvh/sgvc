@@ -1,0 +1,23 @@
+## FUNDO SIDEBAR
+                    <!-- Layout -->
+                    <li class="navigation-header"><span>Administração</span> <i class="icon-menu" title="Layout options"></i></li>
+                    <li class="{{ arUrlActive(['users','roles','permissions']) }}">
+                        <a href="#"><i class="icon-lock"></i> <span>Segurança</span></a>
+                        <ul class="{{ boolReturn(['users','roles','permissions','groups']) ? '':'hidden-ul' }}">
+                            <li class="{{ isUrlActive('users') }}"><a href="{{ route('users.index') }}"><i class="icon-user"></i> Usuários</a></li>
+                            <li class="{{ isUrlActive('roles') }}"><a href="{{ route('roles.index') }}"><i class="icon-users4"></i> Perfis</a></li>
+                            <li class="{{ isUrlActive('permissions') }}"><a href="{{ route('permissions.index') }}"><i class="icon-unlocked"></i> Permissões</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- /layout -->
+
+
+                    <li><a href="{{ route('roles.permissions', ['id' => $role->id]) }}"><i class="icon-pushpin"></i> Definir Permissões</a></li>
+
+
+                    @if (notify()->ready())
+                                            <div class="alert alert-{{ notify()->type() }}">
+                                                {{ notify()->message() }}
+                                            </div>
+                                        @endif
