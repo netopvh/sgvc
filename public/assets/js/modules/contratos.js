@@ -92,15 +92,6 @@ $(function() {
         mensal.val(mensal.maskMoney('unmasked')[0]);
     });
 
-    mensal.blur(function () {
-        if(mensal.val() != ''){
-            if (mensal.val() > total.val() && total.val() < mensal.val()){
-                mensal.val('');
-                bootbox.alert("O Valor MENSAL deve ser menor que o TOTAL!");
-            }
-        }
-    });
-
     var inicio = $('#inicio');
     var fim = $('#encerramento');
     //console.log(dtInicio);
@@ -109,7 +100,7 @@ $(function() {
         if(inicio.val() != '' || fim.val() != ''){
             var dtInicio = parseInt(inicio.val().split("/")[2].toString() + inicio.val().split("/")[1].toString() + inicio.val().split("/")[0].toString());
             var dtFim = parseInt(fim.val().split("/")[2].toString() + fim.val().split("/")[1].toString() + fim.val().split("/")[0].toString());
-            if (dtFim < dtInicio){
+            if (dtInicio > dtFim){
                 fim.val('');
                 bootbox.alert("A Data de Fim do Contrato deve ser maior que o Inicio de Contrato!");
             }

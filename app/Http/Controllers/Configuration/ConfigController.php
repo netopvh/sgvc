@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Configuration;
 
+use App\Exceptions\Access\GeneralException;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Efriandika\LaravelSettings\Facades\Settings;
 
 class ConfigController extends Controller
 {
@@ -24,6 +26,26 @@ class ConfigController extends Controller
      */
     public function index()
     {
-        return view('modules.configuration.index');
+
+        $data = ['fq_90' => settings('fq_90'), 'fq_60' => settings('fq_60'), 'fq_30' => settings('fq_30')];
+        
+        return view('modules.configuration.index')
+            ->withSetting($data);
+    }
+
+
+    public function store(Request $request)
+    {
+
+        try{
+            Settings::set('fq_90', $request->fq_90);
+            Settings::set('fq_60', $request->fq_60);
+            Settings::set('fq_30', $request->fq_30);
+            notify()->flash('Parâmetros definidos com sucesso!!', 'success');
+            return redirect()->route('config.index');
+        }catch (GeneralException $e){
+            notify()->flash($e->getMessage(), 'danger');
+            return redirect()->route('config.index');
+        }
     }
 }

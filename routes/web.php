@@ -54,6 +54,7 @@ Route::group(['namespace' => 'Access'], function () {
 Route::group(['namespace' => 'Configuration'], function(){
     Route::group(['prefix' => 'config'], function(){
         Route::get('/', 'ConfigController@index')->name('config.index');
+        Route::post('/','ConfigController@store')->name('config.store');
     });
 });
 

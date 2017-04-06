@@ -176,6 +176,7 @@ return [
         Arcanedev\Notify\NotifyServiceProvider::class,
         Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
+        Efriandika\LaravelSettings\SettingsServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -242,6 +243,7 @@ return [
         'Notify'  => Arcanedev\Notify\Facades\Notify::class,
         'ChannelLog'  =>  App\Contracts\Facades\ChannelLog::class,
         'Excel'   =>  Maatwebsite\Excel\Facades\Excel::class,
+        'Settings' => Efriandika\LaravelSettings\Facades\Settings::class,
 
     ],
 
