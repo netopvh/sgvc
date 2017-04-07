@@ -1,11 +1,22 @@
+Olá, <br><br>
+
+O Sistema de Contratos verificou que existe um contrato próximo do vencimento. <br>
+Acesse o SGVC para tomar as ações necessárias sobre o relativo contrato. <br><br>
+<b>Informações do Contrato</b><br>
 <table>
     <tr>
-        <td>Um contrato vai vencer em {{ $encerramento }}</td>
+        <td><b>Numero:</b> {{ $numero }} / {{ $ano }}</td>
     </tr>
     <tr>
-        <td>Numero: {{ $numero }} / {{ $ano }}</td>
+        <td><b>Vencimento:</b> {{ $encerramento }}</td>
     </tr>
     <tr>
-        <td>Para mais informações acesse o Sistema de Contratos. <a href="http://10.67.116.46/contratos" target="_blank">Acessar Sistema</a></td>
+        <td><b>Objeto do Contrato:</b></td>
+    </tr>
+    <tr>
+        <td>{{ $objeto }}</td>
+    </tr>
+    <tr>
+        <td><a href="{{ url('/') }}" target="_blank">Acessar SGVC</a></td>
     </tr>
 </table>
