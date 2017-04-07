@@ -27,7 +27,12 @@ class DatabaseSeeder extends Seeder
             ['name' => 'manage-users', 'display_name' => 'Gerenciar Usuários', 'sort' => 2, 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
             ['name' => 'manage-roles', 'display_name' => 'Gerenciar Perfis', 'sort' => 3, 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
             ['name' => 'manage-config', 'display_name' => 'Gerenciar Parâmetros', 'sort' => 4, 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
-            ['name' => 'manage-logs', 'display_name' => 'Gerenciar Logs', 'sort' => 5, 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()]
+            ['name' => 'manage-logs', 'display_name' => 'Gerenciar Logs', 'sort' => 5, 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
+            ['name' => 'manage-contratantes', 'display_name' => 'Gerenciar Contratantes', 'sort' => 6, 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
+            ['name' => 'manage-contratados', 'display_name' => 'Gerenciar Contratados', 'sort' => 7, 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
+            ['name' => 'manage-unidades', 'display_name' => 'Gerenciar Unidades', 'sort' => 8, 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
+            ['name' => 'manage-contratos', 'display_name' => 'Gerenciar Contratos', 'sort' => 9, 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
+            ['name' => 'manage-aditivos', 'display_name' => 'Gerenciar Aditivos', 'sort' => 10, 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()]
         ]);
 
         $roleAdmin = Role::find(2);

@@ -13,7 +13,7 @@ use App\Repositories\Application\Contracts\ContratoRepository;
 use Illuminate\Http\Request;
 use App\Contracts\Facades\ChannelLog as Log;
 use App\Exceptions\Access\GeneralException;
-use Maatwebsite\Excel\Facades\Excel;
+use Zizaco\Entrust\EntrustFacade as Entrust;
 
 class ContratoAditivoController extends Controller
 {
@@ -90,6 +90,10 @@ class ContratoAditivoController extends Controller
      */
     public function index(Request $request)
     {
+        if (!Entrust::can('manage-aditivos')){
+            abort(404,'Não possui permissão');
+        }
+
         try {
             if (!empty($request->all())) {
                 $data = $this->contrato->searchForAdditions($request->all());
@@ -147,24 +151,6 @@ class ContratoAditivoController extends Controller
     }
 
     /**
-     * Visualiza informações de um determinado registro
-     *
-     * @param $id
-     * @return mixed
-     */
-    public function view($id)
-    {
-        try {
-            return view('modules.application.contratos.view')
-                ->withContrato($this->contrato->viewContrato($id))
-                ->withTipoPessoa(TipoPessoa::getConstants());
-        } catch (GeneralException $e) {
-            notify()->flash($e->getMessage(), 'danger');
-            return redirect()->route('contratos.index');
-        }
-    }
-
-    /**
      * Busca dados para edição
      *
      * @param $id
@@ -172,6 +158,10 @@ class ContratoAditivoController extends Controller
      */
     public function editNormal($id)
     {
+        if (!Entrust::can('manage-aditivos')){
+            abort(404,'Não possui permissão');
+        }
+
         try {
             return view('modules.application.contratos.normal.edit')
                 ->withContrato($this->contrato->findContrato($id))
@@ -223,10 +213,14 @@ class ContratoAditivoController extends Controller
      */
     public function delete($id)
     {
+        if (!Entrust::can('manage-aditivos')){
+            abort(404,'Não possui permissão');
+        }
+
         try {
-            $unidade = $this->unidade->find($id)->name;
-            if ($this->unidade->delete($id)) {
-                Log::write('event', 'Unidade ' . $unidade . ' removida por ' . auth()->user()->name);
+            $unidade = $this->contrato->find($id)->name;
+            if ($this->contrato->delete($id)) {
+                Log::write('event', 'Contrato ' . $unidade . ' removido por ' . auth()->user()->name);
             }
             return redirect()->route('unidades.index');
         } catch (GeneralException $e) {
@@ -240,23 +234,6 @@ class ContratoAditivoController extends Controller
      * Private Functions
      *
      */
-
-    /**
-     * Limpa campos vazios
-     *
-     * @param array $attributes
-     * @return array
-     */
-    private function unsetCleanFields(array $attributes)
-    {
-        $data = [];
-        foreach ($attributes as $key => $value) {
-            if (!is_null($value)) {
-                $data[$key] = $value;
-            }
-        }
-        return $data;
-    }
 
     /**
      * Realiza o upload do arquivo

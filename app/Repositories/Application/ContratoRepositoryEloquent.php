@@ -266,7 +266,7 @@ class ContratoRepositoryEloquent extends BaseRepository implements ContratoRepos
 
         if (!$this->allowedCache('getAllByVencimento') || $this->isSkippedCache()) {
             return parent::with(['casa', 'empresas', 'aditivos', 'gestores', 'fiscais'])->scopeQuery(function ($query) use ($today) {
-                $query->whereDate('encerramento','<',$today);
+                $query->whereDate('encerramento','<=',$today);
                 $query->where('status', 'V');
                 $query->orderBy('encerramento', 'asc');
                 return $query;
@@ -277,7 +277,7 @@ class ContratoRepositoryEloquent extends BaseRepository implements ContratoRepos
         $minutes = $this->getCacheMinutes();
         $value = $this->getCacheRepository()->remember($key, $minutes, function () use ($columns, $today) {
             return parent::with(['casa', 'empresas', 'aditivos', 'gestores', 'fiscais'])->scopeQuery(function ($query) use ($today) {
-                $query->whereDate('encerramento','<',$today);
+                $query->whereDate('encerramento','<=',$today);
                 $query->where('status', 'V');
                 $query->orderBy('encerramento', 'asc');
                 return $query;

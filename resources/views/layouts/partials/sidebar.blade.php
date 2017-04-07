@@ -41,16 +41,31 @@
                     <li class="{{ arUrlActive(['contractors','units','companies']) }}">
                         <a href="#"><i class="icon-stack"></i> <span>Cadastros</span></a>
                         <ul class="{{ boolReturn(['contractors','units','companies']) ? '':'hidden-ul' }}">
-                            <li class="{{ isUrlActive('contractors') }}"><a href="{{ route('casas.index') }}"><i class="icon-office"></i> Contratantes</a></li>
-                            <li class="{{ isUrlActive('companies') }}"><a href="{{ route('empresas.index') }}"><i class="icon-city"></i> Contratados</a></li>
-                            <li class="{{ isUrlActive('units') }}"><a href="{{ route('unidades.index') }}"><i class="icon-store"></i> Unidades</a></li>
+                            @if(Entrust::can('manage-contratantes') || user_role() == true)
+                                <li class="{{ isUrlActive('contractors') }}"><a href="{{ route('casas.index') }}"><i
+                                                class="icon-office"></i> Contratantes</a></li>
+                            @endif
+                            @if(Entrust::can('manage-contratados') || user_role() == true)
+                                <li class="{{ isUrlActive('companies') }}"><a href="{{ route('empresas.index') }}"><i
+                                                class="icon-city"></i> Contratados</a></li>
+                            @endif
+                            @if(Entrust::can('manage-unidades') || user_role() == true)
+                                <li class="{{ isUrlActive('units') }}"><a href="{{ route('unidades.index') }}"><i
+                                                class="icon-store"></i> Unidades</a></li>
+                            @endif
                         </ul>
                     </li>
                     <li class="{{ arUrlActive(['contracts','additions']) }}">
                         <a href="#"><i class="icon-stack"></i> <span>Movimentação</span></a>
                         <ul class="{{ boolReturn(['contracts','additions']) ? '':'hidden-ul' }}">
-                            <li class="{{ isUrlActive('contracts') }}"><a href="{{ route('contratos.index') }}"><i class="icon-bookmark"></i> Contratos</a></li>
-                            <li class="{{ isUrlActive('additions') }}"><a href="{{ route('aditivos.index') }}"><i class="icon-paste2"></i> Aditivos</a></li>
+                            @if(Entrust::can('manage-contratos') || user_role() == true)
+                                <li class="{{ isUrlActive('contracts') }}"><a href="{{ route('contratos.index') }}"><i
+                                                class="icon-bookmark"></i> Contratos</a></li>
+                            @endif
+                            @if(Entrust::can('manage-aditivos') || user_role() == true)
+                                <li class="{{ isUrlActive('additions') }}"><a href="{{ route('aditivos.index') }}"><i
+                                                class="icon-paste2"></i> Aditivos</a></li>
+                            @endif
                         </ul>
                     </li>
                     <!-- /main -->

@@ -24,38 +24,44 @@
                         <tbody>
                         @if($contratos->count() >= 1)
                             @foreach($contratos as $contrato)
-                                @if(in_array($user, $contrato->gestores->pluck('id')->toArray()) || in_array($user, $contrato->fiscais->pluck('id')->toArray()))
-                                <tr class="bg-danger-800">
-                                    <td>
-                                        @if($contrato->aditivado == 'S')
-                                            {{ $contrato->orig_numero_ano }}
-                                        @else
-                                            {{ $contrato->numero_ano }}
-                                        @endif
-                                    </td>
-                                    <td>{{ $contrato->casa->name }}</td>
-                                    <td>
-                                        @if(count($contrato->empresas) > 1)
-                                            @foreach($contrato->empresas as $empresa)
-                                                {{ $empresa->razao }}<b>.</b>
-                                            @endforeach
-                                        @else
-                                            @foreach($contrato->empresas as $empresa)
-                                                {{ $empresa->razao }}<b>.</b>
-                                            @endforeach
-                                        @endif
-                                    </td>
-                                    <td>
-                                        @if($contrato->aditivado == 'N')
-                                            <span class="label label-info">Não</span>
-                                        @elseif($contrato->aditivado == 'S')
-                                            <span class="label label-success">Sim</span>
-                                        @endif
-                                    </td>
-                                    <td>{{ $contrato->encerramento }}</td>
-                                    <td class="text-center"><a href="{{ route('contratos.view',['id' => $contrato->id]) }}" class="btn btn-sm btn-primary"><i
-                                                    class="icon-eye"></i></a></td>
-                                </tr>
+                                @if(user_all() == true || in_array($user, $contrato->gestores->pluck('id')->toArray()) || in_array($user, $contrato->fiscais->pluck('id')->toArray()))
+                                    <tr class="bg-danger-800">
+                                        <td>
+                                            @if($contrato->aditivado == 'S')
+                                                {{ $contrato->orig_numero_ano }}
+                                            @else
+                                                {{ $contrato->numero_ano }}
+                                            @endif
+                                        </td>
+                                        <td>{{ $contrato->casa->name }}</td>
+                                        <td>
+                                            @if(count($contrato->empresas) > 1)
+                                                @foreach($contrato->empresas as $empresa)
+                                                    {{ $empresa->razao }}<b>.</b>
+                                                @endforeach
+                                            @else
+                                                @foreach($contrato->empresas as $empresa)
+                                                    {{ $empresa->razao }}<b>.</b>
+                                                @endforeach
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if($contrato->aditivado == 'N')
+                                                <span class="label label-info">Não</span>
+                                            @elseif($contrato->aditivado == 'S')
+                                                <span class="label label-success">Sim</span>
+                                            @endif
+                                        </td>
+                                        <td>{{ $contrato->encerramento }}</td>
+                                        <td class="text-center"><a
+                                                    href="{{ route('contratos.view',['id' => $contrato->id]) }}"
+                                                    class="btn btn-sm btn-primary"><i
+                                                        class="icon-eye"></i></a></td>
+                                    </tr>
+                                @else
+                                    <tr>
+                                        <td colspan="6" class="text-center">Sem contratos Próximo do Vencimento!</td>
+                                    </tr>
                                 @endif
                             @endforeach
                         @else

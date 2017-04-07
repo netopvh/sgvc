@@ -3,6 +3,7 @@ namespace App\Http\Controllers\Access;
 
 use App\Http\Controllers\Controller;
 use Rap2hpoutre\LaravelLogViewer\LaravelLogViewer;
+use Zizaco\Entrust\EntrustFacade as Entrust;
 
 class LogViewController extends Controller
 {
@@ -15,6 +16,9 @@ class LogViewController extends Controller
 
     public function index()
     {
+        if (!Entrust::can('manage-logs')){
+            abort(404,'Não possui permissão');
+        }
 
         if ($this->request->input('l')) {
             LaravelLogViewer::setFile(base64_decode($this->request->input('l')));

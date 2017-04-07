@@ -7,6 +7,7 @@ use App\Repositories\Access\Contracts\PermissionRepository;
 use App\Repositories\Access\Contracts\RoleRepository;
 use Illuminate\Http\Request;
 use App\Contracts\Facades\ChannelLog as Log;
+use Zizaco\Entrust\EntrustFacade as Entrust;
 
 class RoleController extends Controller
 {
@@ -43,6 +44,10 @@ class RoleController extends Controller
      */
     public function index()
     {
+        if (!Entrust::can('manage-roles')){
+            abort(404,'Não possui permissão');
+        }
+
         return view('modules.access.roles.index')
             ->withRoles($this->role->all());
     }
@@ -54,6 +59,10 @@ class RoleController extends Controller
      */
     public function create()
     {
+        if (!Entrust::can('manage-roles')){
+            abort(404,'Não possui permissão');
+        }
+
         return view('modules.access.roles.create')
             ->withPermissions($this->permission->all())
             ->withRoleCount($this->role->getCount());
@@ -87,6 +96,10 @@ class RoleController extends Controller
      */
     public function edit($id)
     {
+        if (!Entrust::can('manage-roles')){
+            abort(404,'Não possui permissão');
+        }
+
         try{
 
             $role = $this->role->findRole($id);

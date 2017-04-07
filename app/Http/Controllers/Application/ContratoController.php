@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use App\Contracts\Facades\ChannelLog as Log;
 use App\Exceptions\Access\GeneralException;
 use Maatwebsite\Excel\Facades\Excel;
+use Zizaco\Entrust\EntrustFacade as Entrust;
 
 class ContratoController extends Controller
 {
@@ -81,6 +82,10 @@ class ContratoController extends Controller
      */
     public function index(Request $request)
     {
+        if (!Entrust::can('manage-contratos')){
+            abort(404,'Não possui permissão');
+        }
+
         if (!empty($request->all())) {
             $fieldsSearch = $this->unsetCleanFields($request->all());
             $data = $this->contrato->searchWithRelations($fieldsSearch);
@@ -103,6 +108,10 @@ class ContratoController extends Controller
      */
     public function view($id)
     {
+        if (!Entrust::can('manage-contratos')){
+            abort(404,'Não possui permissão');
+        }
+
         try {
             return view('modules.application.contratos.view')
                 ->withContrato($this->contrato->viewContrato($id))
@@ -138,6 +147,10 @@ class ContratoController extends Controller
      */
     public function createNormal()
     {
+        if (!Entrust::can('manage-contratos')){
+            abort(404,'Não possui permissão');
+        }
+
         return view('modules.application.contratos.normal.create')
             ->withCasas($this->casa->all())
             ->withUnidades($this->unidade->all())
@@ -190,15 +203,18 @@ class ContratoController extends Controller
      */
     public function editNormal($id)
     {
-        try {
+        if (!Entrust::can('manage-contratos')){
+            abort(404,'Não possui permissão');
+        }
 
+        try {
             //Localiza o contrato no banco de dados
             $contrato = $this->contrato->findContrato($id);
             //Faz a mesclagem dos arrays gestores e fiscais.
             $fiscaisGestores = array_merge($contrato->gestores->pluck('id')->toArray(),$contrato->fiscais->pluck('id')->toArray());
 
             //Verifica se o usuário faz parte dos gestores ou fiscais para editar o contrato
-            if (! in_array(auth()->user()->id,$fiscaisGestores)){
+            if (auth()->user()->all === "0" || ! in_array(auth()->user()->id,$fiscaisGestores)){
                 notify()->flash('Você não tem permissão para editar este contrato', 'danger');
                 return redirect()->route('contratos.index');
             }
@@ -253,6 +269,10 @@ class ContratoController extends Controller
      */
     public function delete($id)
     {
+        if (!Entrust::can('manage-contratos')){
+            abort(404,'Não possui permissão');
+        }
+
         try {
             $unidade = $this->unidade->find($id)->name;
             if ($this->unidade->delete($id)) {

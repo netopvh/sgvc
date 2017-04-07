@@ -11,6 +11,7 @@ use Prettus\Repository\Contracts\RepositoryInterface;
 interface UserRepository extends RepositoryInterface
 {
    public function getAllWithRoles();
+   public function searchWithRoles($field, $value, $columns = ['*']);
    public function findUser($id);
 }
 

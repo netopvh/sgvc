@@ -7,6 +7,7 @@ use App\Repositories\Access\Contracts\RoleRepository;
 use App\Repositories\Access\Contracts\UserRepository;
 use Illuminate\Http\Request;
 use App\Contracts\Facades\ChannelLog as Log;
+use Zizaco\Entrust\EntrustFacade as Entrust;
 
 class UserController extends Controller
 {
@@ -44,6 +45,11 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
+
+        if (!Entrust::can('manage-users')){
+            abort(404,'Não possui permissão');
+        }
+
         if (($search = $request->get('search'))) {
             $data = $this->user->searchWithRoles('name', $search);
         } else {
@@ -62,6 +68,10 @@ class UserController extends Controller
      */
     public function edit($id)
     {
+        if (!Entrust::can('manage-users')){
+            abort(404,'Não possui permissão');
+        }
+        
         try{
             return view('modules.access.users.edit')
                 ->withUser($this->user->findUser($id))

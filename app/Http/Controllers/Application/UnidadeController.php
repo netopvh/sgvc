@@ -7,6 +7,7 @@ use App\Repositories\Application\Contracts\UnidadeRepository;
 use Illuminate\Http\Request;
 use App\Contracts\Facades\ChannelLog as Log;
 use App\Exceptions\Access\GeneralException;
+use Zizaco\Entrust\EntrustFacade as Entrust;
 
 class UnidadeController extends Controller
 {
@@ -44,6 +45,10 @@ class UnidadeController extends Controller
      */
     public function index()
     {
+        if (!Entrust::can('manage-unidades')){
+            abort(404,'Não possui permissão');
+        }
+
         return view('modules.application.cadastros.unidades.index')
             ->withUnidades($this->unidade->all());
     }
@@ -55,6 +60,10 @@ class UnidadeController extends Controller
      */
     public function create()
     {
+        if (!Entrust::can('manage-unidades')){
+            abort(404,'Não possui permissão');
+        }
+
         return view('modules.application.cadastros.unidades.create')
             ->withCasas($this->casa->all());
     }
@@ -85,6 +94,10 @@ class UnidadeController extends Controller
      */
     public function edit($id)
     {
+        if (!Entrust::can('manage-unidades')){
+            abort(404,'Não possui permissão');
+        }
+
         try{
             return view('modules.application.cadastros.unidades.edit')
                 ->withUnidade($this->unidade->findUnidade($id))
@@ -110,6 +123,10 @@ class UnidadeController extends Controller
 
     public function delete($id)
     {
+        if (!Entrust::can('manage-unidades')){
+            abort(404,'Não possui permissão');
+        }
+
         try{
             $unidade = $this->unidade->find($id)->name;
             if ($this->unidade->delete($id)){

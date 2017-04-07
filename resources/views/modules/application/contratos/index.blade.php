@@ -35,9 +35,11 @@
                         <a href="{{ route('contratos.create') }}" class="btn btn-primary"><i
                                     class="icon-plus-circle2"></i>
                             Cadastrar</a>
-                        <a href="{{ route('aditivos.index') }}" class="btn btn-primary"><i
-                                    class="icon-clipboard2"></i>
-                            Aditivar Contrato</a>
+                        @if(Entrust::can('manage-aditivos') || user_role() == true)
+                            <a href="{{ route('aditivos.index') }}" class="btn btn-primary"><i
+                                        class="icon-clipboard2"></i>
+                                Aditivar Contrato</a>
+                        @endif
                         <a href="{{ route('contratos.excel') }}" class="btn btn-primary"><i
                                     class="icon-file-excel"></i>
                             Exportar Excel</a>
@@ -60,8 +62,8 @@
                         </thead>
                         <tbody>
                         @foreach($contratos as $contrato)
-                            <!-- Verifica se o usuário pode visualizar o contrato -->
-                            @if(auth()->user() || in_array($user, $contrato->gestores->pluck('id')->toArray()) || in_array($user, $contrato->fiscais->pluck('id')->toArray()))
+                                <!-- Verifica se o usuário pode visualizar o contrato -->
+                        @if(user_all() == true || in_array($user, $contrato->gestores->pluck('id')->toArray()) || in_array($user, $contrato->fiscais->pluck('id')->toArray()))
                             <tr>
                                 <td>
                                     @if($contrato->aditivado == 'S')
@@ -122,15 +124,15 @@
                                                                     class="icon-file-plus2"></i> Termo Aditivo</a></li>
                                                 @endif
 
-                                                    <li>
-                                                        <a href="{{ route('contratos.normal.edit',['id' => $contrato->id]) }}"><i
-                                                                    class="icon-pencil7"></i> Editar</a></li>
+                                                <li>
+                                                    <a href="{{ route('contratos.normal.edit',['id' => $contrato->id]) }}"><i
+                                                                class="icon-pencil7"></i> Editar</a></li>
                                             </ul>
                                         </li>
                                     </ul>
                                 </td>
                             </tr>
-                            @endif
+                        @endif
                         @endforeach
                         </tbody>
                     </table>

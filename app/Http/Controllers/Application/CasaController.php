@@ -6,6 +6,7 @@ use App\Repositories\Application\Contracts\CasaRepository;
 use Illuminate\Http\Request;
 use App\Contracts\Facades\ChannelLog as Log;
 use App\Exceptions\Access\GeneralException;
+use Zizaco\Entrust\EntrustFacade as Entrust;
 
 class CasaController extends Controller
 {
@@ -42,6 +43,10 @@ class CasaController extends Controller
      */
     public function index()
     {
+        if (!Entrust::can('manage-contratantes')){
+            abort(404,'Não possui permissão');
+        }
+
         return view('modules.application.cadastros.casa.index')
             ->withCasas($this->casa->all());
     }
@@ -53,6 +58,10 @@ class CasaController extends Controller
      */
     public function create()
     {
+        if (!Entrust::can('manage-contratantes')){
+            abort(404,'Não possui permissão');
+        }
+
         return view('modules.application.cadastros.casa.create');
     }
 
@@ -82,6 +91,10 @@ class CasaController extends Controller
      */
     public function edit($id)
     {
+        if (!Entrust::can('manage-contratantes')){
+            abort(404,'Não possui permissão');
+        }
+
         try{
             return view('modules.application.cadastros.casa.edit')
                 ->withCasa($this->casa->findCasa($id));

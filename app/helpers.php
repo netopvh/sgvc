@@ -63,7 +63,20 @@ if (!function_exists('user_role')) {
 
     function user_role()
     {
-        return auth()->user()->roles()->get()->first()->all;
+        if (auth()->user()->roles()->get()->first()->all == 1){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+}
+
+if (!function_exists('user_all')){
+
+    function user_all()
+    {
+        return auth()->user()->all;
     }
 
 }

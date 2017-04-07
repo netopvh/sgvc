@@ -135,11 +135,7 @@ class RoleRepositoryEloquent extends BaseRepository implements RoleRepository, C
         $role = $this->model->find($id);
 
         //verifica se o perfil tem acesso, o administrador sempre tem acesso
-        if ($role->id == 1){
-            $all = true;
-        }else{
-            $all = $attributes['associated-permissions'] == 'all' ? true : false;
-        }
+        $all = $attributes['associated-permissions'] == 'all' ? true : false;
 
         if (! isset($attributes['permissions'])){
             $attributes['permissions'] = [];

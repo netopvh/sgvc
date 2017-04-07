@@ -49,7 +49,7 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository, C
         if (is_null($result)){
             throw new GeneralException('Registro não localizado no banco de dados');
         }
-        return $this->model->with('roles')->find($id);;
+        return $this->model->with('roles')->find($id);
     }
 
     /**
@@ -84,7 +84,7 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository, C
     public function searchWithRoles($field, $value, $columns = ['*']){
         if (!$this->allowedCache('searchWithRoles') || $this->isSkippedCache()) {
             return parent::scopeQuery(function($query) use ($field, $value, $columns){
-                return $query->where($field, $value);
+                return $query->where($field,'like','%'. $value .'%');
             })->paginate(8);
         }
 
@@ -101,12 +101,18 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository, C
 
     public function update(array $attributes, $id)
     {
-        $user = $this->model->with('roles')->find($id);
-        $user->roles()->detach();
-        $user->roles()->attach($attributes['role_id']);
+        $model = $this->model->with('roles')->find($id);
+        $model->all = ($attributes['all'] == 1 ? true : false );
 
-        event(new RepositoryEntityUpdated($this, $this->model));
+        if (!$model->save()){
+            $model->roles()->detach();
+            $model->roles()->attach($attributes['role_id']);
 
-        return true;
+            event(new RepositoryEntityUpdated($this, $model));
+
+            return $this->parserResult($model);
+        }else{
+            throw new GeneralException('Erro gravar no banco de dados');
+        }
     }
 }

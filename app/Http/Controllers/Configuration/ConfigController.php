@@ -6,6 +6,7 @@ use App\Exceptions\Access\GeneralException;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Efriandika\LaravelSettings\Facades\Settings;
+use Zizaco\Entrust\EntrustFacade as Entrust;
 
 class ConfigController extends Controller
 {
@@ -26,6 +27,10 @@ class ConfigController extends Controller
      */
     public function index()
     {
+
+        if (!Entrust::can('manage-config')){
+            abort(404,'Não possui permissão');
+        }
 
         $data = ['fq_90' => settings('fq_90'), 'fq_60' => settings('fq_60'), 'fq_30' => settings('fq_30')];
         

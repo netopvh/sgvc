@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Contracts\Facades\ChannelLog as Log;
 use App\Exceptions\Access\GeneralException;
 use App\Enum\TipoPessoa;
+use Zizaco\Entrust\EntrustFacade as Entrust;
 
 class EmpresaController extends Controller
 {
@@ -37,6 +38,10 @@ class EmpresaController extends Controller
      */
     public function index(Request $request)
     {
+        if (!Entrust::can('manage-contratados')){
+            abort(404,'Não possui permissão');
+        }
+
         if (($search = $request->get('search'))) {
             $data = $this->empresa->searchPaginate('razao', $search);
         } else {
@@ -54,6 +59,10 @@ class EmpresaController extends Controller
      */
     public function create()
     {
+        if (!Entrust::can('manage-contratados')){
+            abort(404,'Não possui permissão');
+        }
+
         return view('modules.application.cadastros.empresas.create')
             ->withTipoPessoa(TipoPessoa::getConstants());
     }
@@ -85,6 +94,10 @@ class EmpresaController extends Controller
      */
     public function edit($id)
     {
+        if (!Entrust::can('manage-contratados')){
+            abort(404,'Não possui permissão');
+        }
+
         try{
             return view('modules.application.cadastros.empresas.edit')
                 ->withEmpresa($this->empresa->findEmpresa($id))

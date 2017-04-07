@@ -44,14 +44,14 @@
                                     <div class="row">
                                         <div class="col-sm-7">
                                             <div class="form-group">
-                                                <label>Nome Completo:</label>
+                                                <label class="text-semibold">Nome Completo:</label>
                                                 <input type="text" name="name" value="{{ $user->name }}" class="form-control"
                                                        readonly>
                                             </div>
                                         </div>
                                         <div class="col-sm-5">
                                             <div class="form-group">
-                                                <label>Usuário:</label>
+                                                <label class="text-semibold">Usuário:</label>
                                                 <input type="text" value="{{ $user->username }}"
                                                        class="form-control" readonly>
                                             </div>
@@ -60,14 +60,14 @@
                                     <div class="row">
                                         <div class="col-sm-7">
                                             <div class="form-group">
-                                                <label>Email:</label>
+                                                <label class="text-semibold">Email:</label>
                                                 <input type="email" value="{{ $user->email }}"
                                                        class="form-control" readonly>
                                             </div>
                                         </div>
                                         <div class="col-sm-5">
                                             <div class="form-group">
-                                                <label>Perfil:</label>
+                                                <label class="text-semibold">Perfil:</label>
                                                 <select name="role_id" id="role_id" class="select" required>
                                                     <option value="">Selecione</option>
                                                     @foreach($roles as $role)
@@ -75,6 +75,23 @@
                                                                 value="{{ $role->id }}">{{ $role->name }}</option>
                                                     @endforeach
                                                 </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <label class="text-semibold">Ver Todos os Contratos</label>
+                                            <div class="radio">
+                                                <label>
+                                                    <input type="radio" name="all" value="1" class="styled"{{ $user->all == 1? ' checked':'' }}>
+                                                    Sim
+                                                </label>
+                                            </div>
+                                            <div class="radio">
+                                                <label>
+                                                    <input type="radio" name="all" value="0" class="styled"{{ $user->all == 0? ' checked':'' }}>
+                                                    Não
+                                                </label>
                                             </div>
                                         </div>
                                     </div>
