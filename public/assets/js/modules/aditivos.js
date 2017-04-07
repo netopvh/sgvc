@@ -19,15 +19,6 @@ $(function () {
         mensal.val(mensal.maskMoney('unmasked')[0]);
     });
 
-    mensal.blur(function () {
-        if(mensal.val() != ''){
-            if (mensal.val() > total.val() && total.val() < mensal.val()){
-                mensal.val('');
-                bootbox.alert("O Valor MENSAL deve ser menor que o TOTAL!");
-            }
-        }
-    });
-
     var inicio = $('#inicio');
     var fim = $('#encerramento');
     //console.log(dtInicio);

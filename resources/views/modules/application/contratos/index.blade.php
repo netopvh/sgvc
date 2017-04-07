@@ -61,7 +61,7 @@
                         <tbody>
                         @foreach($contratos as $contrato)
                             <!-- Verifica se o usuário pode visualizar o contrato -->
-                            @if(in_array($user, $contrato->gestores->pluck('id')->toArray()) || in_array($user, $contrato->fiscais->pluck('id')->toArray()))
+                            @if(auth()->user() || in_array($user, $contrato->gestores->pluck('id')->toArray()) || in_array($user, $contrato->fiscais->pluck('id')->toArray()))
                             <tr>
                                 <td>
                                     @if($contrato->aditivado == 'S')
