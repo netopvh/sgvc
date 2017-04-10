@@ -27,9 +27,9 @@ $(function() {
         if (tipo.val() == 'N'){
             document.location.href = window.location.href + '/normal'
         }else if(tipo.val() == 'C'){
-            console.log('Credenciamento');
+            bootbox.alert('Módulo ainda em desenvolvimento');
         }else if(tipo.val() == 'P'){
-            console.log('Prestação');
+            bootbox.alert('Módulo ainda em desenvolvimento');
         }
     });
 

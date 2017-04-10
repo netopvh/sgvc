@@ -214,7 +214,7 @@ class ContratoController extends Controller
             $fiscaisGestores = array_merge($contrato->gestores->pluck('id')->toArray(),$contrato->fiscais->pluck('id')->toArray());
 
             //Verifica se o usuário faz parte dos gestores ou fiscais para editar o contrato
-            if (auth()->user()->all === "0" || ! in_array(auth()->user()->id,$fiscaisGestores)){
+            if (! in_array(auth()->user()->id,$fiscaisGestores)){
                 notify()->flash('Você não tem permissão para editar este contrato', 'danger');
                 return redirect()->route('contratos.index');
             }

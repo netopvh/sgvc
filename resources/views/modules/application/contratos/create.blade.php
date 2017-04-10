@@ -1,6 +1,7 @@
 @extends('layouts.master')
 @section('scripts-before')
     <script src="{{ asset('assets/js/plugins/forms/selects/select2.min.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins/notifications/bootbox.min.js') }}"></script>
     <script src="{{ asset('assets/js/modules/contratos.js') }}"></script>
 @stop
 @section('content')
