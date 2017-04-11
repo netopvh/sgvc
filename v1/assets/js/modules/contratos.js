@@ -18,7 +18,12 @@ $(function() {
     });
 
 
-    var url = window.location.protocol + '//' + window.location.host + '/';
+    //Local
+    //var url = window.location.protocol + '//' + window.location.host + '/';
+    //Production
+    var url = window.location.protocol + '//' + window.location.host + '/sgvc/v1/';
+
+    console.log(url);
 
     //DEFINE O TIPO DE CONTRATO A SER CADASTRADO
     var tipo = $('#tipo');
