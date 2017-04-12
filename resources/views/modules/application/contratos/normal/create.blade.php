@@ -16,7 +16,6 @@
                 <div class="panel panel-flat">
                     <div class="panel-heading">
                         <h5 class="panel-title">Cadastrar Contrato</h5>
-
                         <div class="heading-elements">
                             <ul class="icons-list">
                                 <li><a data-action="collapse"></a></li>

@@ -35,4 +35,10 @@ $(function () {
             bootbox.alert("Campo Fim do Contrato é Obrigatório!");
         }
     });
+
+    var button = $('#button');
+    var form = $('#formAditivo');
+    form.submit(function () {
+        button.prop('disabled', true);
+    });
 });

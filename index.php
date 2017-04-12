@@ -7,7 +7,7 @@
 <body>
 
 <script>
-    document.location.href = window.location.href + 'v1';
+    document.location.href = window.location.href + 'public';
 </script>
 </body>
 </html>

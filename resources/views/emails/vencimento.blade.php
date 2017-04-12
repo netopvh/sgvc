@@ -17,6 +17,6 @@ Acesse o SGVC para tomar as ações necessárias sobre o relativo contrato. <br>
         <td>{{ $objeto }}</td>
     </tr>
     <tr>
-        <td><a href="{{ url('/') }}" target="_blank">Acessar SGVC</a></td>
+        <td><a href="http://app.fiero.org.br/sgvc" target="_blank">Acessar SGVC</a></td>
     </tr>
 </table>

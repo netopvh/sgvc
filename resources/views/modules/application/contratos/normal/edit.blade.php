@@ -25,7 +25,7 @@
                     </div>
                     <div class="panel-body">
                         <form action="{{ route('contratos.normal.update',['id' => $contrato->id]) }}"
-                              class="form-validate-jquery" method="post"
+                              class="form-validate-jquery" id="formContrato" method="post"
                               autocomplete="off" enctype="multipart/form-data">
                             {{ csrf_field() }}
                             {{ method_field('patch') }}
@@ -185,7 +185,7 @@
                             <!-- Fim do Form -->
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <button type="submit" class="btn btn-primary"><i class="icon-database-check"></i>
+                                    <button type="submit" id="button" class="btn btn-primary"><i class="icon-database-check"></i>
                                         Salvar
                                     </button>
                                     <input type="hidden" name="tipo" value="N">

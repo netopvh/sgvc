@@ -86,7 +86,7 @@
                                                     .
                                                 </div>
                                             @endif
-                                            <form action="{{ route('aditivos.store') }}" method="post"
+                                            <form action="{{ route('aditivos.store') }}" id="formAditivo" method="post"
                                                   enctype="multipart/form-data">
                                                 {{ csrf_field() }}
                                                 <div class="row">
@@ -162,7 +162,7 @@
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-lg-6">
-                                                        <button type="submit" class="btn btn-primary"><i
+                                                        <button type="submit" class="btn btn-primary" id="button"><i
                                                                     class="icon-database-check"></i>
                                                             Salvar
                                                         </button>
@@ -283,7 +283,7 @@
                                                                     R$ {{ number_format($aditivo->total, 2, ',', '.') }}
                                                                 </td>
                                                                 <td>
-                                                                    <a href="{{ url('/uploads/files') }}/{{ $contrato->arquivo }}"
+                                                                    <a href="{{ url('/uploads/files') }}/{{ $aditivo->arquivo }}"
                                                                        target="_blank"><i
                                                                                 class="icon-search4"></i></a>
                                                                 </td>
