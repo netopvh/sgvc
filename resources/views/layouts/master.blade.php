@@ -16,6 +16,7 @@
     @yield('styles')
     <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}">
     <!-- /global stylesheets -->
+    <link rel="icon" href="{{ asset('favicon.ico') }}">
 
 </head>
 

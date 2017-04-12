@@ -26,7 +26,7 @@
                     </div>
                     <div class="panel-body">
                         <form action="{{ route('contratos.normal.store') }}" class="form-validate-jquery" method="post"
-                              autocomplete="off" enctype="multipart/form-data">
+                              autocomplete="off" id="formContrato" enctype="multipart/form-data">
                             {{ csrf_field() }}
                                     <!-- Inicio do Form -->
                             <div class="row">
@@ -167,7 +167,7 @@
                             <!-- Fim do Form -->
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <button type="submit" class="btn btn-primary"><i class="icon-database-check"></i>
+                                    <button type="submit" id="button" class="btn btn-primary"><i class="icon-database-check"></i>
                                         Salvar
                                     </button>
                                     <input type="hidden" name="tipo" value="N">

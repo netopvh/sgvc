@@ -1,3 +1,13 @@
-<?php
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
 
-header("Location: http://". $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
+<script>
+    document.location.href = window.location.href + 'v1';
+</script>
+</body>
+</html>

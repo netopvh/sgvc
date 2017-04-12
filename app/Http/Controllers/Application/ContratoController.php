@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Application;
 use App\Enum\TipoContrato;
 use App\Enum\TipoPessoa;
 use App\Http\Controllers\Controller;
+use App\Jobs\FileUpload;
 use App\Repositories\Access\Contracts\UserRepository;
 use App\Repositories\Application\Contracts\CasaRepository;
 use App\Repositories\Application\Contracts\EmpresaRepository;
@@ -82,8 +83,8 @@ class ContratoController extends Controller
      */
     public function index(Request $request)
     {
-        if (!Entrust::can('manage-contratos')){
-            abort(404,'Não possui permissão');
+        if (!Entrust::can('manage-contratos')) {
+            abort(404, 'Não possui permissão');
         }
 
         if (!empty($request->all())) {
@@ -108,8 +109,8 @@ class ContratoController extends Controller
      */
     public function view($id)
     {
-        if (!Entrust::can('manage-contratos')){
-            abort(404,'Não possui permissão');
+        if (!Entrust::can('manage-contratos')) {
+            abort(404, 'Não possui permissão');
         }
 
         try {
@@ -147,8 +148,8 @@ class ContratoController extends Controller
      */
     public function createNormal()
     {
-        if (!Entrust::can('manage-contratos')){
-            abort(404,'Não possui permissão');
+        if (!Entrust::can('manage-contratos')) {
+            abort(404, 'Não possui permissão');
         }
 
         return view('modules.application.contratos.normal.create')
@@ -172,20 +173,18 @@ class ContratoController extends Controller
     {
         try {
 
-            if ($model = $this->contrato->createNormal($request->all())) {
-
-                if ($request->hasFile('arquivo')) {
-                    $this->fileName = str_random(16);
-                    $file = $this->contrato->find($model->id);
-                    $file->arquivo = $this->fileName . '.pdf';
-                    if ($file->save()) {
-                        $this->uploadFile($request->file('arquivo'));
-                    }
+            if ($request->hasFile('arquivo')) {
+                if ($this->uploadFile($request->file('arquivo'))){
+                    $attributes = $request->all();
+                    $attributes['arquivo'] = $this->fileName . '.pdf';
+                    $this->contrato->createNormal($attributes);
                 }
-
-                Log::write('event', 'Contrato Nº ' . $request->numero . '/' . $request->ano . ' cadastrado no sistema por ' . auth()->user()->name);
-
+            }else{
+                $this->contrato->createNormal($request->all());
             }
+
+            Log::write('event', 'Contrato Nº ' . $request->numero . '/' . $request->ano . ' cadastrado no sistema por ' . auth()->user()->name);
+
             notify()->flash('Contrato cadastrado com sucesso!', 'success');
             return redirect()->route('contratos.index');
 
@@ -203,18 +202,18 @@ class ContratoController extends Controller
      */
     public function editNormal($id)
     {
-        if (!Entrust::can('manage-contratos')){
-            abort(404,'Não possui permissão');
+        if (!Entrust::can('manage-contratos')) {
+            abort(404, 'Não possui permissão');
         }
 
         try {
             //Localiza o contrato no banco de dados
             $contrato = $this->contrato->findContrato($id);
             //Faz a mesclagem dos arrays gestores e fiscais.
-            $fiscaisGestores = array_merge($contrato->gestores->pluck('id')->toArray(),$contrato->fiscais->pluck('id')->toArray());
+            $fiscaisGestores = array_merge($contrato->gestores->pluck('id')->toArray(), $contrato->fiscais->pluck('id')->toArray());
 
             //Verifica se o usuário faz parte dos gestores ou fiscais para editar o contrato
-            if (! in_array(auth()->user()->id,$fiscaisGestores)){
+            if (!in_array(auth()->user()->id, $fiscaisGestores)) {
                 notify()->flash('Você não tem permissão para editar este contrato', 'danger');
                 return redirect()->route('contratos.index');
             }
@@ -242,19 +241,20 @@ class ContratoController extends Controller
     public function updateNormal(Request $request, $id)
     {
         try {
-            if ($model = $this->contrato->update($request->all(), $id)) {
 
-                if ($request->hasFile('arquivo')) {
-                    $this->fileName = str_random(16);
-                    $file = $this->contrato->find($model->id);
-                    $file->arquivo = $this->fileName . '.pdf';
-                    if ($file->save()) {
-                        $this->uploadFile($request->file('arquivo'));
-                    }
+
+            if ($request->hasFile('arquivo')) {
+                if ($this->uploadFile($request->file('arquivo'))){
+                    $attributes = $request->all();
+                    $attributes['arquivo'] = $this->fileName . '.pdf';
+                    $this->contrato->updateNormal($attributes, $id);
                 }
-
-                Log::write('event', 'Unidade ' . $request->name . ' alterada por ' . auth()->user()->name);
+            }else{
+                $this->contrato->updateNormal($request->all(), $id);
             }
+
+            Log::write('event', 'Contrato ' . $request->numero . '/' . $request->ano .  ' alterado por ' . auth()->user()->name);
+
             notify()->flash('Contrato alterado com sucesso!', 'success');
             return redirect()->route('contratos.index');
         } catch (GeneralException $e) {
@@ -269,8 +269,8 @@ class ContratoController extends Controller
      */
     public function delete($id)
     {
-        if (!Entrust::can('manage-contratos')){
-            abort(404,'Não possui permissão');
+        if (!Entrust::can('manage-contratos')) {
+            abort(404, 'Não possui permissão');
         }
 
         try {
@@ -327,13 +327,16 @@ class ContratoController extends Controller
     private function uploadFile($file)
     {
         if ($file) {
-            $fileName = $file->getClientOriginalName();
+            $this->fileName = uniqid();
             $extension = $file->getClientOriginalExtension() ?: 'PDF';
             $folderName = DIRECTORY_SEPARATOR . 'uploads' . DIRECTORY_SEPARATOR . 'files';
             $destinationPath = public_path() . $folderName;
             $safeName = $this->fileName . '.' . $extension;
-            $file->move($destinationPath, $safeName);
+            if ($file->move($destinationPath, $safeName)){
+                return true;
+            }
         }
+        return false;
     }
 
 

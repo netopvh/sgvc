@@ -85,7 +85,7 @@ class ContratoRepositoryEloquent extends BaseRepository implements ContratoRepos
 
             event(new RepositoryEntityCreated($this, $model));
 
-            return $model;
+            return $this->parserResult($model);
         } else {
             throw new GeneralException('Erro ao gravar registro no banco');
         }
@@ -97,7 +97,7 @@ class ContratoRepositoryEloquent extends BaseRepository implements ContratoRepos
      * @return mixed
      * @throws GeneralException
      */
-    public function update(array $attributes, $id)
+    public function updateNormal(array $attributes, $id)
     {
         $this->applyScope();
 
@@ -463,12 +463,15 @@ class ContratoRepositoryEloquent extends BaseRepository implements ContratoRepos
      */
     private function unsetItensArray(array $attributes)
     {
-        $itens = ['gestores', 'fiscais', 'empresas', 'arquivo'];
+        $itens = ['gestores', 'fiscais', 'empresas'];
 
         $data = [];
         foreach ($attributes as $key => $value) {
             if ($key == 'ano') {
                 $data['orig_ano'] = $value;
+            }
+            if($key == 'arquivo' && $value == ''){
+                unset($key);
             }
             if ($key == 'inicio') {
                 $data['orig_inicio'] = $value;

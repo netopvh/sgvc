@@ -127,20 +127,17 @@ class ContratoAditivoController extends Controller
     {
         try {
 
-            if ($model = $this->aditivo->create($request->all())) {
-
-                if ($request->hasFile('arquivo')) {
-                    $this->fileName = str_random(16);
-                    $file = $this->aditivo->findAltFilename($model->toArray());
-                    $file->arquivo = $this->fileName . '.pdf';
-                    if ($file->save()) {
-                        $this->uploadFile($request->file('arquivo'));
-                    }
+            if ($request->hasFile('arquivo')) {
+                if ($this->uploadFile($request->file('arquivo'))){
+                    $attributes = $request->all();
+                    $attributes['arquivo'] = $this->fileName . '.pdf';
+                    $this->aditivo->create($attributes);
                 }
-
-                Log::write('event', 'Contrato Nº ' . $this->contrato->find($request->contrato_id)->numero . '/' . $request->ano . ' aditivado por ' . auth()->user()->name);
-
+            }else{
+                $this->aditivo->create($request->all());
             }
+
+            Log::write('event', 'Contrato Nº ' . $request->numero . '/' . $request->ano . ' aditivado por ' . auth()->user()->name);
             notify()->flash('Contrato aditivado com sucesso!', 'success');
             return redirect()->route('contratos.index');
 
@@ -243,12 +240,15 @@ class ContratoAditivoController extends Controller
     private function uploadFile($file)
     {
         if ($file) {
-            $fileName = $file->getClientOriginalName();
+            $this->fileName = uniqid();
             $extension = $file->getClientOriginalExtension() ?: 'PDF';
             $folderName = DIRECTORY_SEPARATOR . 'uploads' . DIRECTORY_SEPARATOR . 'files';
             $destinationPath = public_path() . $folderName;
             $safeName = $this->fileName . '.' . $extension;
-            $file->move($destinationPath, $safeName);
+            if ($file->move($destinationPath, $safeName)){
+                return true;
+            }
         }
+        return false;
     }
 }

@@ -114,4 +114,10 @@ $(function() {
         }
     });
 
+    var button = $('#button');
+    var form = $('#formContrato');
+    form.submit(function () {
+        button.prop('disabled', true);
+    });
+
 });

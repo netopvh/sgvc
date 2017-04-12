@@ -16,6 +16,7 @@ interface ContratoRepository extends RepositoryInterface
     public function searchWithRelations(array $attributes, $columns = ['*']);
     public function searchForAdditions(array $attributes, $columns = ['*']);
     public function createNormal(array $attributes);
+    public function updateNormal(array $attributes, $id);
     public function viewContrato($id);
     public function excelExport();
     public function findContrato($id);

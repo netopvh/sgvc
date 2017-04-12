@@ -169,6 +169,7 @@
                                                         <input type="hidden" name="tipo" value="N">
                                                         <input type="hidden" name="contrato_id"
                                                                value="{{ $contrato->id }}">
+                                                        <input type="hidden" name="numero" value="{{ $contrato->numero }}">
                                                         <a href="{{ route('aditivos.index') }}"
                                                            class="btn btn-danger"><i
                                                                     class="icon-undo"></i>

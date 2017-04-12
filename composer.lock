@@ -162,16 +162,16 @@
         },
         {
             "name": "arcanedev/support",
-            "version": "4.1.5",
+            "version": "4.1.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ARCANEDEV/Support.git",
-                "reference": "4fc68a934029153ad83e33ed0299097faa7ef71f"
+                "reference": "fab3ca1377894c3fe5f9b309b7253c580bce40e4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ARCANEDEV/Support/zipball/4fc68a934029153ad83e33ed0299097faa7ef71f",
-                "reference": "4fc68a934029153ad83e33ed0299097faa7ef71f",
+                "url": "https://api.github.com/repos/ARCANEDEV/Support/zipball/fab3ca1377894c3fe5f9b309b7253c580bce40e4",
+                "reference": "fab3ca1377894c3fe5f9b309b7253c580bce40e4",
                 "shasum": ""
             },
             "require": {
@@ -218,7 +218,7 @@
                 "laravel",
                 "support"
             ],
-            "time": "2017-03-21T16:15:25+00:00"
+            "time": "2017-04-11T11:43:07+00:00"
         },
         {
             "name": "barryvdh/laravel-debugbar",
@@ -1134,16 +1134,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.4.17",
+            "version": "v5.4.18",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "f7675d59e3863a58ecdff1a5ee1dcd0cff788f4b"
+                "reference": "d15ded55b5e690199393ea93a57edcbae20d1ffc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/f7675d59e3863a58ecdff1a5ee1dcd0cff788f4b",
-                "reference": "f7675d59e3863a58ecdff1a5ee1dcd0cff788f4b",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/d15ded55b5e690199393ea93a57edcbae20d1ffc",
+                "reference": "d15ded55b5e690199393ea93a57edcbae20d1ffc",
                 "shasum": ""
             },
             "require": {
@@ -1259,7 +1259,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2017-04-03T13:07:39+00:00"
+            "time": "2017-04-10T19:27:41+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -3316,16 +3316,16 @@
         },
         {
             "name": "zizaco/entrust",
-            "version": "1.7.0",
+            "version": "1.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Zizaco/entrust.git",
-                "reference": "1fa77fadfbc8840ee1e9a6ce483b39ba985f81d2"
+                "reference": "992e484f90a4d00b8ec0f42e8a59ba0b07ba1e09"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Zizaco/entrust/zipball/1fa77fadfbc8840ee1e9a6ce483b39ba985f81d2",
-                "reference": "1fa77fadfbc8840ee1e9a6ce483b39ba985f81d2",
+                "url": "https://api.github.com/repos/Zizaco/entrust/zipball/992e484f90a4d00b8ec0f42e8a59ba0b07ba1e09",
+                "reference": "992e484f90a4d00b8ec0f42e8a59ba0b07ba1e09",
                 "shasum": ""
             },
             "require": {
@@ -3380,7 +3380,7 @@
                 "permission",
                 "roles"
             ],
-            "time": "2016-03-09T17:05:35+00:00"
+            "time": "2016-12-29T06:24:46+00:00"
         }
     ],
     "packages-dev": [
