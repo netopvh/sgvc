@@ -11,7 +11,7 @@
             <div class="col-lg-4">
                 <div class="panel panel-flat">
                     <div class="panel-heading">
-                        <h5 class="panel-title">Editar Unidade</h5>
+                        <h5 class="panel-title">Editar Unidade / Setor</h5>
 
                         <div class="heading-elements">
                             <ul class="icons-list">

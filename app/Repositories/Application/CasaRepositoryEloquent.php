@@ -60,6 +60,7 @@ class CasaRepositoryEloquent extends BaseRepository implements CasaRepository, C
 
             $this->validator->with($attributes)->passesOrFail(ValidatorInterface::RULE_CREATE);
         }
+        //Verifica se Existe Unidade
         if ($this->model->query()->where('name', $attributes['name'])->first()){
             throw new GeneralException('Registro já cadastrado no sistema!');
         }

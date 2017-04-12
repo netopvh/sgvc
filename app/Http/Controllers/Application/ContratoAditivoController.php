@@ -126,7 +126,6 @@ class ContratoAditivoController extends Controller
     public function store(Request $request)
     {
         try {
-
             if ($request->hasFile('arquivo')) {
                 if ($this->uploadFile($request->file('arquivo'))){
                     $attributes = $request->all();

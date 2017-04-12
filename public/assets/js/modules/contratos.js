@@ -19,9 +19,9 @@ $(function() {
 
 
     //Local
-    //var url = window.location.protocol + '//' + window.location.host + '/';
+    var url = window.location.protocol + '//' + window.location.host + '/';
     //Production
-    var url = window.location.protocol + '//' + window.location.host + '/sgvc/v1/';
+    //var url = window.location.protocol + '//' + window.location.host + '/sgvc/public/';
 
     console.log(url);
 
@@ -80,7 +80,7 @@ $(function() {
     // The date picker (read the docs)
     $('.datepicker').pickadate({
         monthsFull: ['Janeiro', 'Feveiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
-        weekdaysShort: ['Sab', 'Dom', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
+        weekdaysShort: ['Seg', 'Dom', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
         format: 'dd/mm/yyyy',
         today: 'Hoje',
         clear: 'Limpar',

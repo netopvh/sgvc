@@ -50,7 +50,7 @@ class UnidadeController extends Controller
         }
 
         return view('modules.application.cadastros.unidades.index')
-            ->withUnidades($this->unidade->all());
+            ->withUnidades($this->unidade->getAll());
     }
 
     /**

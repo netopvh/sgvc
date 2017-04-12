@@ -11,4 +11,5 @@ use Prettus\Repository\Contracts\RepositoryInterface;
 interface UnidadeRepository extends RepositoryInterface
 {
     public function findUnidade($id);
+    public function getAll();
 }

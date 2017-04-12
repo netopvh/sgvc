@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
         //Seeder de Perfis
 
         DB::table('roles')->insert([
-            ['name' => 'Super Administrador', 'all' => true, 'sort' => 1, 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
+            ['name' => 'Super Administrador', 'all' => false, 'sort' => 1, 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
             ['name' => 'Administrador', 'all' => false, 'sort' => 2, 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
             ['name' => 'Usuário', 'all' => false, 'sort' => 3, 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()]
         ]);
@@ -35,39 +35,31 @@ class DatabaseSeeder extends Seeder
             ['name' => 'manage-aditivos', 'display_name' => 'Gerenciar Aditivos', 'sort' => 10, 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()]
         ]);
 
+        $roleSuper = Role::find(1);
+        $roleSuper->attachPermissions([1,2,3,4,5,6,7,8,9,10]);
+
         $roleAdmin = Role::find(2);
-        $roleAdmin->attachPermissions([1,2,3,4]);
+        $roleAdmin->attachPermissions([1,2,4,6,7,8,9,10]);
 
         $roleUser = Role::find(3);
-        $roleUser->attachPermissions([1,2,3,4]);
+        $roleUser->attachPermissions([6,7,8,9,10]);
 
         DB::table('casas')->insert([
             ['name' => 'SESI', 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
             ['name' => 'SENAI', 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
             ['name' => 'FIERO', 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
-            ['name' => 'IEL', 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()]
+            ['name' => 'IEL', 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
+            ['name' => 'SESI/SENAI', 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()]
         ]);
 
         DB::table('unidades')->insert([
-            ['name' => 'Casa da Indústria', 'casa_id' => 1, 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
-            ['name' => 'SESI Escola Porto Velho', 'casa_id' => 1, 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
-            ['name' => 'SESI Clinica Porto Velho', 'casa_id' => 1, 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
-            ['name' => 'Casa da Indústria', 'casa_id' => 2, 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
-            ['name' => 'SENAI Marechal Rondon', 'casa_id' => 2, 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
-            ['name' => 'SENAI CETEM', 'casa_id' => 2, 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
-            ['name' => 'SENAI CEET', 'casa_id' => 2, 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
-            ['name' => 'Casa da Indústria', 'casa_id' => 3, 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
-            ['name' => 'Casa da Indústria', 'casa_id' => 4, 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()]
-        ]);
-
-        $faker = Faker\Factory::create('pt_BR');
-
-        DB::table('empresas')->insert([
-            ['razao' => $faker->company, 'fantasia' => $faker->companySuffix, 'cpf_cnpj'=>$faker->cnpj(false), 'tipo_pessoa'=>'PJ','responsavel'=> $faker->name, 'email'=> $faker->companyEmail, 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
-            ['razao' => $faker->company, 'fantasia' => $faker->companySuffix, 'cpf_cnpj'=>$faker->cnpj(false), 'tipo_pessoa'=>'PJ','responsavel'=> $faker->name, 'email'=> $faker->companyEmail, 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
-            ['razao' => $faker->company, 'fantasia' => $faker->companySuffix, 'cpf_cnpj'=>$faker->cnpj(false), 'tipo_pessoa'=>'PJ','responsavel'=> $faker->name, 'email'=> $faker->companyEmail, 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
-            ['razao' => $faker->company, 'fantasia' => $faker->companySuffix, 'cpf_cnpj'=>$faker->cnpj(false), 'tipo_pessoa'=>'PJ','responsavel'=> $faker->name, 'email'=> $faker->companyEmail, 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
-            ['razao' => $faker->company, 'fantasia' => $faker->companySuffix, 'cpf_cnpj'=>$faker->cnpj(false), 'tipo_pessoa'=>'PJ','responsavel'=> $faker->name, 'email'=> $faker->companyEmail, 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()]
+            ['name' => 'Informática CI', 'casa_id' => 5, 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
+            ['name' => 'Infraestrutura CI', 'casa_id' => 5, 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
+            ['name' => 'Compras CI', 'casa_id' => 5, 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
+            ['name' => 'Recursos Humanos CI', 'casa_id' => 5, 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
+            ['name' => 'Contabilidade CI', 'casa_id' => 5, 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
+            ['name' => 'Informática CEET Porto Velho', 'casa_id' => 2, 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
+            ['name' => 'Infraestrutura CEET Porto Velho', 'casa_id' => 2, 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
         ]);
 
     }

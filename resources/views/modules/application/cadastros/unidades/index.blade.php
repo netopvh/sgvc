@@ -12,7 +12,7 @@
             <div class="col-lg-6">
                 <div class="panel panel-flat">
                     <div class="panel-heading">
-                        <h5 class="panel-title">Unidades</h5>
+                        <h5 class="panel-title">Unidades / Setores</h5>
 
                         <div class="heading-elements">
                             <ul class="icons-list">
@@ -43,8 +43,8 @@
                         @foreach($unidades as $unidade)
                             <tr>
                                 <td>{{ $unidade->id }}</td>
-                                <td>{{ $unidade->name }}</td>
-                                <td>{{ $unidade->casa->name }}</td>
+                                <td>{{ $unidade->unidade }}</td>
+                                <td>{{ $unidade->casa }}</td>
                                 <td class="text-center">
                                     <ul class="icons-list">
                                         <li class="dropdown">
@@ -69,6 +69,7 @@
                         @endforeach
                         </tbody>
                     </table>
+                    <div class="text-right">{{ $unidades->links() }}</div>
                 </div>
             </div>
         </div>

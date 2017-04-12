@@ -449,8 +449,8 @@ class ContratoRepositoryEloquent extends BaseRepository implements ContratoRepos
             CASE WHEN contratos.ambito = \'M\' THEN \'Municipal\' ELSE \'Estadual\' END AS AMBITO,
             REPLACE(CONVERT(NVARCHAR,contratos.inicio,106),\' \',\'/\') AS INICIO,
             REPLACE(CONVERT(NVARCHAR,contratos.encerramento,106),\' \',\'/\') AS ENCERRAMENTO,
-            FORMAT(contratos.total,\'C\',\'pt-br\') AS TOTAL,
-            FORMAT(contratos.mensal,\'C\',\'pt-br\') AS MENSAL,
+            contratos.total AS TOTAL,
+            contratos.mensal AS MENSAL,
             contratos.objeto AS OBJETO'))
             ->where('contratos.status', 'V')
             ->get();

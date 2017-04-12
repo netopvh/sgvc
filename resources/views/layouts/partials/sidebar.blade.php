@@ -51,7 +51,7 @@
                             @endif
                             @if(Entrust::can('manage-unidades') || user_role() == true)
                                 <li class="{{ isUrlActive('units') }}"><a href="{{ route('unidades.index') }}"><i
-                                                class="icon-store"></i> Unidades</a></li>
+                                                class="icon-store"></i> Unidades / Setor</a></li>
                             @endif
                         </ul>
                     </li>

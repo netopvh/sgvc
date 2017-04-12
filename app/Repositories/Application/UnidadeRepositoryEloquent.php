@@ -44,13 +44,63 @@ class UnidadeRepositoryEloquent extends BaseRepository implements UnidadeReposit
         $this->pushCriteria(app(RequestCriteria::class));
     }
 
+    public function getAll()
+    {
+        if (!$this->allowedCache('getAll') || $this->isSkippedCache()) {
+            return parent::with(['casa'])->scopeQuery(function ($query) {
+                $query->join('casas','unidades.casa_id','casas.id');
+                $query->select(
+                    'unidades.id',
+                    'unidades.name AS unidade',
+                    'casas.name as casa'
+                );
+                return $query->orderBy('casas.name', 'asc');
+            })->paginate(10);
+        }
+
+        $key = $this->getCacheKey('getAll', func_get_args());
+        $minutes = $this->getCacheMinutes();
+        $value = $this->getCacheRepository()->remember($key, $minutes, function () {
+            return parent::with(['casa'])->scopeQuery(function ($query) {
+                $query->join('casas','unidades.casa_id','casas.id');
+                $query->select(
+                    'unidades.id',
+                    'unidades.name AS unidade',
+                    'casas.name as casa'
+                );
+                return $query->orderBy('casas.name', 'asc');
+            })->paginate(10);
+        });
+
+        return $value;
+    }
+
+    /**
+     * @param $id
+     * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model|mixed|null|static|static[]
+     * @throws GeneralException
+     */
     public function findUnidade($id)
     {
         $result = $this->model->query()->find($id);
-        if (is_null($result)){
+        if (is_null($result)) {
             throw new GeneralException("Não foi localizado registro no banco de dados!");
         }
-        return $result;
+
+        if (!$this->allowedCache('findUnidade') || $this->isSkippedCache()) {
+            $result = parent::find($id);
+            return $result;
+        }
+
+        $key = $this->getCacheKey('findUnidade', func_get_args());
+        $minutes = $this->getCacheMinutes();
+        $value = $this->getCacheRepository()->remember($key, $minutes, function () use ($id) {
+            $result = parent::find($id);
+
+            return $result;
+        });
+
+        return $value;
     }
 
     /**
@@ -65,17 +115,19 @@ class UnidadeRepositoryEloquent extends BaseRepository implements UnidadeReposit
 
             $this->validator->with($attributes)->passesOrFail(ValidatorInterface::RULE_CREATE);
         }
-        if ($this->model->query()->where('name', $attributes['name'])->first()){
-            throw new GeneralException('Registro já cadastrado no sistema!');
-        }
+        //Verifica se já existe cadastrado no sistema
+        //Obs: Modificado pois permite setor duplicado
+        //if ($this->model->query()->where('name', $attributes['name'])->first()){
+        //    throw new GeneralException('Registro já cadastrado no sistema!');
+        //}
 
         $model = $this->model->newInstance($attributes);
-        if ($model->save()){
+        if ($model->save()) {
             $this->resetModel();
             event(new RepositoryEntityCreated($this, $model));
             return $this->parserResult($model);
 
-        }else{
+        } else {
             throw new GeneralException('Erro ao gravar registro no banco');
         }
     }
@@ -97,7 +149,7 @@ class UnidadeRepositoryEloquent extends BaseRepository implements UnidadeReposit
         $model = $this->model->find($id);
 
         $model->fill($attributes);
-        if ($model->save()){
+        if ($model->save()) {
 
             $this->skipPresenter($temporarySkipPresenter);
             $this->resetModel();
@@ -106,7 +158,7 @@ class UnidadeRepositoryEloquent extends BaseRepository implements UnidadeReposit
 
             return $this->parserResult($model);
 
-        }else{
+        } else {
             throw new GeneralException('Erro ao gravar registro no banco');
         }
     }
