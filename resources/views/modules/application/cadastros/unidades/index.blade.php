@@ -30,45 +30,47 @@
                         <a href="{{ route('unidades.create') }}" class="btn btn-primary"><i class="icon-plus-circle2"></i> Cadastrar</a>
                     </div>
                     <br>
-                    <table class="table table-bordered table-condensed">
-                        <thead>
-                        <tr>
-                            <th width="70">ID</th>
-                            <th>Nome</th>
-                            <th>Casa</th>
-                            <th class="text-center" width="80">Ações</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($unidades as $unidade)
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-condensed">
+                            <thead>
                             <tr>
-                                <td>{{ $unidade->id }}</td>
-                                <td>{{ $unidade->unidade }}</td>
-                                <td>{{ $unidade->casa }}</td>
-                                <td class="text-center">
-                                    <ul class="icons-list">
-                                        <li class="dropdown">
-                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                                <i class="icon-menu9"></i>
-                                            </a>
-
-                                            <ul class="dropdown-menu dropdown-menu-right">
-                                                <li><a href="{{ route('unidades.edit', ['id' => $unidade->id]) }}"><i class="icon-pencil7"></i> Editar</a></li>
-                                                <li>
-                                                    <form action="{{ route('unidades.delete', ['id' => $unidade->id]) }}" method="post">
-                                                        {{ csrf_field() }}
-                                                        {{ method_field('delete') }}
-                                                        <button type="submit" class="button-clean delete"><i class="icon-trash space-right"></i> Excluir</button>
-                                                    </form>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </td>
+                                <th width="70">ID</th>
+                                <th>Nome</th>
+                                <th>Casa</th>
+                                <th class="text-center" width="80">Ações</th>
                             </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                            @foreach($unidades as $unidade)
+                                <tr>
+                                    <td>{{ $unidade->id }}</td>
+                                    <td>{{ $unidade->unidade }}</td>
+                                    <td>{{ $unidade->casa }}</td>
+                                    <td class="text-center">
+                                        <ul class="icons-list">
+                                            <li class="dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                    <i class="icon-menu9"></i>
+                                                </a>
+
+                                                <ul class="dropdown-menu dropdown-menu-right">
+                                                    <li><a href="{{ route('unidades.edit', ['id' => $unidade->id]) }}"><i class="icon-pencil7"></i> Editar</a></li>
+                                                    <li>
+                                                        <form action="{{ route('unidades.delete', ['id' => $unidade->id]) }}" method="post">
+                                                            {{ csrf_field() }}
+                                                            {{ method_field('delete') }}
+                                                            <button type="submit" class="button-clean delete"><i class="icon-trash space-right"></i> Excluir</button>
+                                                        </form>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                     <div class="text-right">{{ $unidades->links() }}</div>
                 </div>
             </div>

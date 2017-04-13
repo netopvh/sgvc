@@ -25,36 +25,38 @@
                         <a href="{{ route('roles.create') }}" class="btn btn-primary"><i class="icon-plus-circle2"></i> Cadastrar</a>
                     </div>
                     <br>
-                    <table class="table table-bordered table-condensed">
-                        <thead>
-                        <tr>
-                            <th width="70">ID</th>
-                            <th>Nome</th>
-                            <th class="text-center" width="80">Ações</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($roles as $role)
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-condensed">
+                            <thead>
                             <tr>
-                                <td>{{ $role->id }}</td>
-                                <td>{{ $role->name }}</td>
-                                <td class="text-center">
-                                    <ul class="icons-list">
-                                        <li class="dropdown">
-                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                                <i class="icon-menu9"></i>
-                                            </a>
-
-                                            <ul class="dropdown-menu dropdown-menu-right">
-                                                <li><a href="{{ route('roles.edit', ['id' => $role->id]) }}"><i class="icon-pencil7"></i> Editar</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </td>
+                                <th width="70">ID</th>
+                                <th>Nome</th>
+                                <th class="text-center" width="80">Ações</th>
                             </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                            @foreach($roles as $role)
+                                <tr>
+                                    <td>{{ $role->id }}</td>
+                                    <td>{{ $role->name }}</td>
+                                    <td class="text-center">
+                                        <ul class="icons-list">
+                                            <li class="dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                    <i class="icon-menu9"></i>
+                                                </a>
+
+                                                <ul class="dropdown-menu dropdown-menu-right">
+                                                    <li><a href="{{ route('roles.edit', ['id' => $role->id]) }}"><i class="icon-pencil7"></i> Editar</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>

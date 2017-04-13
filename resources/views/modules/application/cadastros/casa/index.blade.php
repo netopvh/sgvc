@@ -28,36 +28,38 @@
                         <a href="{{ route('casas.create') }}" class="btn btn-primary"><i class="icon-plus-circle2"></i> Cadastrar</a>
                     </div>
                     <br>
-                    <table class="table table-bordered table-condensed">
-                        <thead>
-                        <tr>
-                            <th width="70">ID</th>
-                            <th>Nome</th>
-                            <th class="text-center" width="80">Ações</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($casas as $casa)
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-condensed">
+                            <thead>
                             <tr>
-                                <td>{{ $casa->id }}</td>
-                                <td>{{ $casa->name }}</td>
-                                <td class="text-center">
-                                    <ul class="icons-list">
-                                        <li class="dropdown">
-                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                                <i class="icon-menu9"></i>
-                                            </a>
-
-                                            <ul class="dropdown-menu dropdown-menu-right">
-                                                <li><a href="{{ route('casas.edit', ['id' => $casa->id]) }}"><i class="icon-pencil7"></i> Editar</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </td>
+                                <th width="70">ID</th>
+                                <th>Nome</th>
+                                <th class="text-center" width="80">Ações</th>
                             </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                            @foreach($casas as $casa)
+                                <tr>
+                                    <td>{{ $casa->id }}</td>
+                                    <td>{{ $casa->name }}</td>
+                                    <td class="text-center">
+                                        <ul class="icons-list">
+                                            <li class="dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                    <i class="icon-menu9"></i>
+                                                </a>
+
+                                                <ul class="dropdown-menu dropdown-menu-right">
+                                                    <li><a href="{{ route('casas.edit', ['id' => $casa->id]) }}"><i class="icon-pencil7"></i> Editar</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
