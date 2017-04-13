@@ -54,6 +54,7 @@
                             <th width="130">Número/Ano</th>
                             <th>Contratado</th>
                             <th>Contratante</th>
+                            <th>Unidade / Setor</th>
                             <th>Vencimento</th>
                             <th width="50">Status</th>
                             <th width="40">Aditivado?</th>
@@ -84,6 +85,7 @@
                                     @endif
                                 </td>
                                 <td>{{ $contrato->casa->name }}</td>
+                                <td>{{ $contrato->unidade->name }}</td>
                                 <td>{{ $contrato->encerramento }}</td>
                                 <td>
                                     @if($contrato->status == 'V')

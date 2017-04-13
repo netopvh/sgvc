@@ -258,6 +258,10 @@ class ContratoRepositoryEloquent extends BaseRepository implements ContratoRepos
 
     }
 
+    /**
+     * @param array $columns
+     * @return mixed
+     */
     public function getAllByVencimento($columns = ['*'])
     {
         $todayWithDays = Carbon::now()->addDays(90);
@@ -287,6 +291,10 @@ class ContratoRepositoryEloquent extends BaseRepository implements ContratoRepos
         return $value;
     }
 
+    /**
+     * @param array $columns
+     * @return mixed
+     */
     public function getAllByVencimentoMail($columns = ['*'])
     {
         $todayWithDays = Carbon::now()->addDays(90);
