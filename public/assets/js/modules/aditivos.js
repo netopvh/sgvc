@@ -92,7 +92,7 @@ $(function () {
     // The date picker (read the docs)
     $('.datepicker').pickadate({
         monthsFull: ['Janeiro', 'Feveiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
-        weekdaysShort: ['Seg', 'Dom', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
+        weekdaysShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
         format: 'dd/mm/yyyy',
         editable: true,
         today: '',
