@@ -157,7 +157,7 @@ $(function() {
         weekdaysShort: ['Seg', 'Dom', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
         format: 'dd/mm/yyyy',
         editable: true,
-        today: 'Hoje',
+        today: '',
         clear: 'Limpar',
         close: 'Fechar'
     });
