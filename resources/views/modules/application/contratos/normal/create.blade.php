@@ -24,7 +24,7 @@
                         </div>
                     </div>
                     <div class="panel-body">
-                        <form action="{{ route('contratos.normal.store') }}" class="form-validate-jquery" method="post"
+                        <form action="{{ route('contratos.normal.store') }}" class="form-validate" method="post"
                               autocomplete="off" id="formContrato" enctype="multipart/form-data">
                             {{ csrf_field() }}
                                     <!-- Inicio do Form -->
