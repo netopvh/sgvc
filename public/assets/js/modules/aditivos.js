@@ -95,6 +95,8 @@ $(function () {
         weekdaysShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
         format: 'dd/mm/yyyy',
         editable: true,
+        selectYears:true,
+        selectMonths: true,
         today: '',
         clear: 'Limpar',
         close: 'Fechar'
@@ -115,15 +117,11 @@ $(function () {
     //console.log(dtInicio);
 
     fim.blur(function () {
-        if(inicio.val() != '' || fim.val() != ''){
-            var dtInicio = parseInt(inicio.val().split("/")[2].toString() + inicio.val().split("/")[1].toString() + inicio.val().split("/")[0].toString());
-            var dtFim = parseInt(fim.val().split("/")[2].toString() + fim.val().split("/")[1].toString() + fim.val().split("/")[0].toString());
-            if (dtFim < dtInicio){
-                fim.val('');
-                bootbox.alert("A Data de Fim do Contrato deve ser maior que o Inicio de Contrato!");
-            }
-        }else{
-            bootbox.alert("Campo Fim do Contrato é Obrigatório!");
+        var dtInicio = parseInt(inicio.val().split("/")[2].toString() + inicio.val().split("/")[1].toString() + inicio.val().split("/")[0].toString());
+        var dtFim = parseInt(fim.val().split("/")[2].toString() + fim.val().split("/")[1].toString() + fim.val().split("/")[0].toString());
+        if (dtFim < dtInicio){
+            fim.val('');
+            bootbox.alert("A Data de Fim do Contrato deve ser maior que o Inicio de Contrato!");
         }
     });
 

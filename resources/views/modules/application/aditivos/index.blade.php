@@ -114,7 +114,7 @@
                                                                    data-decimal=",">
                                                         </div>
                                                     </div>
-                                                    <div class="col-xs-2">
+                                                    <div class="col-xs-3">
                                                         <div class="form-group">
                                                             <label>Início do Contrato: <span
                                                                         class="text-danger">*</span></label>
@@ -128,7 +128,7 @@
 
                                                         </div>
                                                     </div>
-                                                    <div class="col-xs-2">
+                                                    <div class="col-xs-3">
                                                         <div class="form-group">
                                                             <label>Fim do Contrato: <span
                                                                         class="text-danger">*</span></label>

@@ -108,7 +108,7 @@
                                         <input type="text" name="mensal" id="mensal" class="form-control" data-prefix="R$ " data-thousands="." data-decimal=",">
                                     </div>
                                 </div>
-                                <div class="col-sm-2">
+                                <div class="col-sm-3">
                                     <div class="form-group">
                                         <label>Início do Contrato: <span class="text-danger">*</span></label>
                                         <div class="input-group">
@@ -118,7 +118,7 @@
 
                                     </div>
                                 </div>
-                                <div class="col-sm-2">
+                                <div class="col-sm-3">
                                     <div class="form-group">
                                         <label>Fim do Contrato: <span class="text-danger">*</span></label>
                                         <div class="input-group">
