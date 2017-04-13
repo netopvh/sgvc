@@ -51,8 +51,16 @@ $(function() {
         },
         validClass: "validation-valid-label",
         rules: {
-            inicio: {
-                required: true
+            arquivo: {
+                extension: "pdf"
+            }
+        },
+        messages: {
+            ano: {
+                required: "Obrigatório"
+            },
+            arquivo: {
+                extension: "Permitido apenas arquivos no formato PDF"
             }
         }
 
@@ -148,6 +156,7 @@ $(function() {
         monthsFull: ['Janeiro', 'Feveiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
         weekdaysShort: ['Seg', 'Dom', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
         format: 'dd/mm/yyyy',
+        editable: true,
         today: 'Hoje',
         clear: 'Limpar',
         close: 'Fechar'

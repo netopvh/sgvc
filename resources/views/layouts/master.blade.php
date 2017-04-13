@@ -68,6 +68,7 @@
 <script type="text/javascript" src="{{ asset('assets/js/plugins/ui/moment/moment.min.js') }}"></script>
 @yield('scripts-after')
 <script src="{{ asset('assets/js/plugins/forms/validation/validate.min.js') }}"></script>
+<script src="{{ asset('assets/js/plugins/forms/validation/additional_methods.min.js') }}"></script>
 <script src="{{ asset('assets/js/plugins/forms/validation/localization/messages_pt_BR.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('assets/js/core/app.js') }}"></script>
 @yield('scripts-before')

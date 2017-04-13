@@ -86,14 +86,14 @@
                                                     .
                                                 </div>
                                             @endif
-                                            <form action="{{ route('aditivos.store') }}" id="formAditivo" method="post"
+                                            <form action="{{ route('aditivos.store') }}" class="form-validate" id="formAditivo" method="post"
                                                   enctype="multipart/form-data">
                                                 {{ csrf_field() }}
                                                 <div class="row">
                                                     <div class="col-xs-1">
                                                         <div class="form-group">
                                                             <label>Ano: <span class="text-danger">*</span></label>
-                                                            <input type="text" class="form-control" name="ano">
+                                                            <input type="text" class="form-control" name="ano" maxlength="4" required>
                                                         </div>
                                                     </div>
                                                     <div class="col-xs-2">
@@ -237,7 +237,7 @@
                                                     @if(!empty($contrato->unidade_id))
                                                         <div class="col-xs-3">
                                                             <div class="form-group">
-                                                                <label>Casa:</label>
+                                                                <label>Unidade / Setor:</label>
                                                                 <input type="text" class="form-control"
                                                                        value="{{ $contrato->unidade->name }}" disabled>
                                                             </div>
