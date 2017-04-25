@@ -71,7 +71,6 @@ class UserController extends Controller
         if (!Entrust::can('manage-users')){
             abort(404,'Não possui permissão');
         }
-        
         try{
             return view('modules.access.users.edit')
                 ->withUser($this->user->findUser($id))

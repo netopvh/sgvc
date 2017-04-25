@@ -45,11 +45,26 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository, C
 
     public function findUser($id)
     {
-        $result = $this->model->query()->find($id);
-        if (is_null($result)){
+        $model = $this->model->query()->find($id);
+        if (is_null($model)){
             throw new GeneralException('Registro não localizado no banco de dados');
+        }else{
+            if ($model->roles()->count() == 0){
+                $model->attachRole(3);
+            }
         }
-        return $this->model->with('roles')->find($id);
+
+        if (!$this->allowedCache('findUser') || $this->isSkippedCache()) {
+            return parent::with('roles')->find($id);
+        }
+
+        $key = $this->getCacheKey('findUser', func_get_args());
+        $minutes = $this->getCacheMinutes();
+        $value = $this->getCacheRepository()->remember($key, $minutes, function () use ($id) {
+            return parent::with('roles')->find($id);
+        });
+
+        return $value;
     }
 
     /**
@@ -102,9 +117,9 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository, C
     public function update(array $attributes, $id)
     {
         $model = $this->model->with('roles')->find($id);
-        $model->all = ($attributes['all'] == 1 ? true : false );
+        //$model->all = ($attributes['all'] == 1 ? true : false );
 
-        if (!$model->save()){
+        if ($model->save()){
             $model->roles()->detach();
             $model->roles()->attach($attributes['role_id']);
 
