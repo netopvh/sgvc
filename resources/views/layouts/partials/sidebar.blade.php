@@ -41,15 +41,15 @@
                     <li class="{{ arUrlActive(['contractors','units','companies']) }}">
                         <a href="#"><i class="icon-stack"></i> <span>Cadastros</span></a>
                         <ul class="{{ boolReturn(['contractors','units','companies']) ? '':'hidden-ul' }}">
-                            @if(Entrust::can('manage-contratantes') || user_role() == true)
+                            @if(Entrust::can('manage-contratantes'))
                                 <li class="{{ isUrlActive('contractors') }}"><a href="{{ route('casas.index') }}"><i
                                                 class="icon-office"></i> Contratantes</a></li>
                             @endif
-                            @if(Entrust::can('manage-contratados') || user_role() == true)
+                            @if(Entrust::can('manage-contratados'))
                                 <li class="{{ isUrlActive('companies') }}"><a href="{{ route('empresas.index') }}"><i
                                                 class="icon-city"></i> Contratados</a></li>
                             @endif
-                            @if(Entrust::can('manage-unidades') || user_role() == true)
+                            @if(Entrust::can('manage-unidades'))
                                 <li class="{{ isUrlActive('units') }}"><a href="{{ route('unidades.index') }}"><i
                                                 class="icon-store"></i> Unidades / Setor</a></li>
                             @endif
@@ -58,11 +58,11 @@
                     <li class="{{ arUrlActive(['contracts','additions']) }}">
                         <a href="#"><i class="icon-stack"></i> <span>Movimentação</span></a>
                         <ul class="{{ boolReturn(['contracts','additions']) ? '':'hidden-ul' }}">
-                            @if(Entrust::can('manage-contratos') || user_role() == true)
+                            @if(Entrust::can('manage-contratos'))
                                 <li class="{{ isUrlActive('contracts') }}"><a href="{{ route('contratos.index') }}"><i
                                                 class="icon-bookmark"></i> Contratos</a></li>
                             @endif
-                            @if(Entrust::can('manage-aditivos') || user_role() == true)
+                            @if(Entrust::can('manage-aditivos'))
                                 <li class="{{ isUrlActive('additions') }}"><a href="{{ route('aditivos.index') }}"><i
                                                 class="icon-paste2"></i> Aditivos</a></li>
                             @endif
@@ -71,25 +71,25 @@
                     <!-- /main -->
 
                     <!-- Layout -->
-                    @if(Entrust::can('view-admin') || user_role() == true)
+                    @if(Entrust::can('view-admin'))
                         <li class="navigation-header"><span>Administração</span> <i class="icon-menu"
                                                                                     title="Layout options"></i></li>
                         <li class="{{ arUrlActive(['users','roles','logs','config']) }}">
                             <a href="#"><i class="icon-lock"></i> <span>Segurança</span></a>
                             <ul class="{{ boolReturn(['roles','users', 'logs','config']) ? '':'hidden-ul' }}">
-                                @if(Entrust::can('manage-users') || user_role() == true)
+                                @if(Entrust::can('manage-users'))
                                     <li class="{{ isUrlActive('users') }}"><a href="{{ route('users.index') }}"><i
                                                     class="icon-user"></i> Usuários</a></li>
                                 @endif
-                                @if(Entrust::can('manage-roles') || user_role() == true)
+                                @if(Entrust::can('manage-roles'))
                                     <li class="{{ isUrlActive('roles') }}"><a href="{{ route('roles.index') }}"><i
                                                     class="icon-users4"></i> Perfis</a></li>
                                 @endif
-                                @if(Entrust::can('manage-config') || user_role() == true)
+                                @if(Entrust::can('manage-config'))
                                     <li class="{{ isUrlActive('config') }}"><a href="{{ route('config.index') }}"><i
                                                     class="icon-cog6"></i> Parâmetros do Sistema</a></li>
                                 @endif
-                                @if(Entrust::can('manage-logs') || user_role() == true)
+                                @if(Entrust::can('manage-logs'))
                                     <li class="{{ isUrlActive('logs') }}"><a href="{{ route('logs.index') }}"><i
                                                     class="icon-comment"></i> Logs</a></li>
                                 @endif

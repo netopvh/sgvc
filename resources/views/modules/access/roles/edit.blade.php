@@ -1,7 +1,6 @@
 @extends('layouts.master')
 @section('scripts-after')
-    <script src="{{ asset('assets/js/plugins/forms/selects/select2.min.js') }}"></script>
-    <script src="{{ asset('assets/js/modules/roles.js') }}"></script>
+    <script src="{{ asset('public/assets/js/modules/roles.js') }}"></script>
 @stop
 
 @section('content')

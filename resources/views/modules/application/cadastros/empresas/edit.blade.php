@@ -1,9 +1,8 @@
 @extends('layouts.master')
 @section('scripts-before')
-    <script src="{{ asset('assets/js/plugins/forms/selects/select2.min.js') }}"></script>
-    <script src="{{ asset('assets/js/plugins/forms/mask/dist/inputmask/inputmask.js') }}"></script>
-    <script src="{{ asset('assets/js/plugins/forms/mask/dist/inputmask/jquery.inputmask.js') }}"></script>
-    <script src="{{ asset('assets/js/modules/empresas.js') }}"></script>
+    <script src="{{ asset('public/assets/js/plugins/forms/mask/dist/inputmask/inputmask.js') }}"></script>
+    <script src="{{ asset('public/assets/js/plugins/forms/mask/dist/inputmask/jquery.inputmask.js') }}"></script>
+    <script src="{{ asset('public/assets/js/modules/empresas.js') }}"></script>
 @stop
 @section('content')
     {!! Breadcrumbs::render('empresas.edit') !!}

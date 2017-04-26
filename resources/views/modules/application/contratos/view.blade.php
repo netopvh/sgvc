@@ -1,8 +1,8 @@
 @extends('layouts.master')
 
 @section('scripts-after')
-    <script src="{{ asset('assets/js/plugins/buttons/jQuery.print/jQuery.print.js') }}"></script>
-    <script src="{{ asset('assets/js/modules/contratos.js') }}"></script>
+    <script src="{{ asset('public/assets/js/plugins/buttons/jQuery.print/jQuery.print.js') }}"></script>
+    <script src="{{ asset('public/assets/js/modules/contratos.js') }}"></script>
 @stop
 
 @section('content')

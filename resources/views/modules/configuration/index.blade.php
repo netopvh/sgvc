@@ -1,11 +1,7 @@
 @extends('layouts.master')
-@section('scripts-after')
-    <script src="{{ asset('assets/js/plugins/tables/datatables/datatables.min.js') }}"></script>
-    <script src="{{ asset('assets/js/plugins/forms/selects/select2.min.js') }}"></script>
-@stop
 
 @section('scripts-before')
-    <script src="{{ asset('assets/js/modules/users.js') }}"></script>
+    <script src="{{ asset('public/assets/js/modules/users.js') }}"></script>
 @stop
 
 @section('content')

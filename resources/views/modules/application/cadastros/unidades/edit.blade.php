@@ -1,7 +1,6 @@
 @extends('layouts.master')
 @section('scripts-before')
-    <script src="{{ asset('assets/js/plugins/forms/selects/select2.min.js') }}"></script>
-    <script src="{{ asset('assets/js/modules/unidades.js') }}"></script>
+    <script src="{{ asset('public/assets/js/modules/unidades.js') }}"></script>
 @stop
 @section('content')
     {!! Breadcrumbs::render('unidades.index') !!}
