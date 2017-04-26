@@ -17,7 +17,7 @@ class CreateContratoAditivosTable extends Migration
             $table->increments('id');
             $table->integer('contrato_id')->unsigned();
             $table->foreign('contrato_id')->references('id')->on('contratos');
-            $table->integer('aditivos');
+            $table->integer('aditivos')->nullable();;
             $table->integer('ano');
             $table->decimal('total',10,2);
             $table->decimal('mensal',10,2)->nullable();

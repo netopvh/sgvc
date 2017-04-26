@@ -45,7 +45,7 @@
                                 <div class="col-sm-3">
                                     <div class="form-group">
                                         <label>Tipo Pessoa</label>
-                                        <select name="tipo_pessoa" id="tipo" class="select">
+                                        <select name="tipo_pessoa" id="tipo" class="select" required>
                                             <option value="">Selecione</option>
                                             @foreach($tipo_pessoa as $key => $value)
                                                 <option value="{{ $key }}">{{ $value }}</option>

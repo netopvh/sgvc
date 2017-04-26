@@ -87,7 +87,7 @@
                                         @endif
                                     </td>
                                     <td>{{ $contrato->casa->name }}</td>
-                                    <td>{{ $contrato->unidade->name }}</td>
+                                    <td>{{ isset($contrato->unidade->name)?$contrato->unidade->name:'Unidade não cadastrada' }}</td>
                                     <td>{{ $contrato->encerramento }}</td>
                                     <td>
                                         @if($contrato->status == 'V')

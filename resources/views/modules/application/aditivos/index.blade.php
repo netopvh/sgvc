@@ -282,7 +282,7 @@
                                                                     R$ {{ number_format($aditivo->total, 2, ',', '.') }}
                                                                 </td>
                                                                 <td>
-                                                                    <a href="{{ url('/uploads/files') }}/{{ $aditivo->arquivo }}"
+                                                                    <a href="{{ url('public/uploads/files') }}/{{ $aditivo->arquivo }}"
                                                                        target="_blank"><i
                                                                                 class="icon-search4"></i></a>
                                                                 </td>

@@ -74,9 +74,9 @@
                     @if(Entrust::can('view-admin'))
                         <li class="navigation-header"><span>Administração</span> <i class="icon-menu"
                                                                                     title="Layout options"></i></li>
-                        <li class="{{ arUrlActive(['users','roles','logs','config']) }}">
+                        <li class="{{ arUrlActive(['users','roles','logs','configuration']) }}">
                             <a href="#"><i class="icon-lock"></i> <span>Segurança</span></a>
-                            <ul class="{{ boolReturn(['roles','users', 'logs','config']) ? '':'hidden-ul' }}">
+                            <ul class="{{ boolReturn(['roles','users', 'logs','configuration']) ? '':'hidden-ul' }}">
                                 @if(Entrust::can('manage-users'))
                                     <li class="{{ isUrlActive('users') }}"><a href="{{ route('users.index') }}"><i
                                                     class="icon-user"></i> Usuários</a></li>
@@ -86,7 +86,7 @@
                                                     class="icon-users4"></i> Perfis</a></li>
                                 @endif
                                 @if(Entrust::can('manage-config'))
-                                    <li class="{{ isUrlActive('config') }}"><a href="{{ route('config.index') }}"><i
+                                    <li class="{{ isUrlActive('configuration') }}"><a href="{{ route('config.index') }}"><i
                                                     class="icon-cog6"></i> Parâmetros do Sistema</a></li>
                                 @endif
                                 @if(Entrust::can('manage-logs'))

@@ -20,7 +20,7 @@
                             <div class="container-fluid">
                                 <div class="row">
                                     <div class="col-xs-7">
-                                        <img src="{{ asset('assets/images/fiero.png') }}" alt="Sistema Fiero"
+                                        <img src="{{ asset('public/assets/images/fiero.png') }}" alt="Sistema Fiero"
                                              class="img-responsive">
                                     </div>
                                     <div class="col-xs-4">
