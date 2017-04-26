@@ -117,13 +117,13 @@
                                                                     class="icon-eye"></i> Visualizar</a></li>
                                                     @if(!empty($contrato->arquivo))
                                                         <li>
-                                                            <a href="{{ url('/uploads/files') }}/{{ $contrato->arquivo }}"
+                                                            <a href="{{ url('public/uploads/files') }}/{{ $contrato->arquivo }}"
                                                                target="_blank"><i
                                                                         class="icon-file-text2"></i> Contrato</a></li>
                                                     @endif
                                                     @if($contrato->aditivado == 'S')
                                                         <li>
-                                                            <a href="{{ url('/uploads/files') }}/{{ $contrato->aditivos->last()->arquivo }}"
+                                                            <a href="{{ url('public/uploads/files') }}/{{ $contrato->aditivos->last()->arquivo }}"
                                                                target="_blank"><i
                                                                         class="icon-file-plus2"></i> Termo Aditivo</a>
                                                         </li>
