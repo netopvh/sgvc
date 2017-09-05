@@ -1,10 +1,10 @@
 @extends('layouts.master')
 @section('scripts-before')
-    <script src="{{ asset('public/assets/js/plugins/pickers/pickadate/picker.js') }}"></script>
-    <script src="{{ asset('public/assets/js/plugins/pickers/pickadate/picker.date.js') }}"></script>
-    <script src="{{ asset('public/assets/js/plugins/forms/mask/jquery-maskmoney/src/jquery.maskMoney.js') }}"></script>
-    <script src="{{ asset('public/assets/js/plugins/notifications/bootbox.min.js') }}"></script>
-    <script src="{{ asset('public/assets/js/modules/aditivos.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins/pickers/pickadate/picker.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins/pickers/pickadate/picker.date.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins/forms/mask/jquery-maskmoney/src/jquery.maskMoney.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins/notifications/bootbox.min.js') }}"></script>
+    <script src="{{ asset('assets/js/modules/aditivos.js') }}"></script>
 @stop
 @section('content')
     {!! Breadcrumbs::render('contratos.aditivos') !!}
@@ -282,7 +282,7 @@
                                                                     R$ {{ number_format($aditivo->total, 2, ',', '.') }}
                                                                 </td>
                                                                 <td>
-                                                                    <a href="{{ url('public/uploads/files') }}/{{ $aditivo->arquivo }}"
+                                                                    <a href="{{ url('uploads/files') }}/{{ $aditivo->arquivo }}"
                                                                        target="_blank"><i
                                                                                 class="icon-search4"></i></a>
                                                                 </td>

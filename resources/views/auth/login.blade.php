@@ -9,11 +9,11 @@
     <!-- Global stylesheets -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet"
           type="text/css">
-    <link href="{{ asset('public/assets/css/icons/icomoon/styles.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ asset('public/assets/css/minified/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ asset('public/assets/css/minified/core.min.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ asset('public/assets/css/minified/components.min.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ asset('public/assets/css/minified/colors.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('assets/css/icons/icomoon/styles.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('assets/css/minified/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('assets/css/minified/core.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('assets/css/minified/components.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('assets/css/minified/colors.min.css') }}" rel="stylesheet" type="text/css">
     <!-- /global stylesheets -->
 
 </head>
@@ -23,7 +23,7 @@
 <!-- Main navbar -->
 <div class="navbar navbar-inverse">
     <div class="navbar-header">
-        <a class="navbar-brand" href="{{ route('home') }}"><img src="{{ asset('public/assets/images/logo_light.png') }}" alt=""></a>
+        <a class="navbar-brand" href="{{ route('home') }}"><img src="{{ asset('assets/images/logo_light.png') }}" alt=""></a>
 
         <ul class="nav navbar-nav pull-right visible-xs-block">
             <li><a data-toggle="collapse" data-target="#navbar-mobile"><i class="icon-tree5"></i></a></li>
@@ -115,14 +115,14 @@
 <!-- /page container -->
 
 <!-- Core JS files -->
-<script type="text/javascript" src="{{ asset('public/assets/js/plugins/loaders/pace.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('public/assets/js/core/libraries/jquery.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('public/assets/js/core/libraries/bootstrap.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('apublic/ssets/js/plugins/loaders/blockui.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('public/assets/js/plugins/forms/styling/uniform.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('assets/js/plugins/loaders/pace.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('assets/js/core/libraries/jquery.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('assets/js/core/libraries/bootstrap.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('assets/js/plugins/loaders/blockui.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('assets/js/plugins/forms/styling/uniform.min.js') }}"></script>
 <!-- /core JS files -->
 <!-- Theme JS files -->
-<script type="text/javascript" src="{{ asset('public/assets/js/modules/login.js') }}"></script>
+<script type="text/javascript" src="{{ asset('assets/js/modules/login.js') }}"></script>
 <!-- /theme JS files -->
 </body>
 </html>

@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('scripts-before')
-    <script src="{{ asset('public/assets/js/modules/casas.js') }}"></script>
+    <script src="{{ asset('assets/js/modules/casas.js') }}"></script>
 @stop
 
 @section('content')

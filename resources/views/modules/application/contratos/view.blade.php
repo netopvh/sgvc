@@ -1,8 +1,8 @@
 @extends('layouts.master')
 
 @section('scripts-after')
-    <script src="{{ asset('public/assets/js/plugins/buttons/jQuery.print/jQuery.print.js') }}"></script>
-    <script src="{{ asset('public/assets/js/modules/contratos.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins/buttons/jQuery.print/jQuery.print.js') }}"></script>
+    <script src="{{ asset('assets/js/modules/contratos.js') }}"></script>
 @stop
 
 @section('content')
@@ -20,7 +20,7 @@
                             <div class="container-fluid">
                                 <div class="row">
                                     <div class="col-xs-7">
-                                        <img src="{{ asset('public/assets/images/fiero.png') }}" alt="Sistema Fiero"
+                                        <img src="{{ asset('assets/images/fiero.png') }}" alt="Sistema Fiero"
                                              class="img-responsive">
                                     </div>
                                     <div class="col-xs-4">

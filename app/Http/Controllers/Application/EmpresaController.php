@@ -48,8 +48,8 @@ class EmpresaController extends Controller
             $data = $this->empresa->getAll();
         }
         return view('modules.application.cadastros.empresas.index')
-            ->withEmpresas($data)
-            ->withStatus(Status::getConstants());
+            ->with('empresas',$data)
+            ->with('status',Status::getConstants());
     }
 
     /**
@@ -64,7 +64,7 @@ class EmpresaController extends Controller
         }
 
         return view('modules.application.cadastros.empresas.create')
-            ->withTipoPessoa(TipoPessoa::getConstants());
+            ->with('tipo_pessoa',TipoPessoa::getConstants());
     }
 
     /**
@@ -100,9 +100,9 @@ class EmpresaController extends Controller
 
         try{
             return view('modules.application.cadastros.empresas.edit')
-                ->withEmpresa($this->empresa->findEmpresa($id))
-                ->withTipoPessoa(TipoPessoa::getConstants())
-                ->withStatus(Status::getConstants());
+                ->with('empresa',$this->empresa->findEmpresa($id))
+                ->with('tipo_pessoa',TipoPessoa::getConstants())
+                ->with('status',Status::getConstants());
         }catch (GeneralException $e){
             notify()->flash($e->getMessage(),'danger');
             return redirect()->route('empresas.index');

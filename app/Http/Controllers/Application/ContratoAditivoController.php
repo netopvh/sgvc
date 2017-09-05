@@ -106,7 +106,7 @@ class ContratoAditivoController extends Controller
                 $data = null;
             }
             return view('modules.application.aditivos.index')
-                ->withContrato($data);
+                ->with('contrato',$data);
         } catch (GeneralException $e) {
             notify()->flash($e->getMessage(), 'danger');
             return redirect()->route('aditivos.index');
@@ -160,14 +160,14 @@ class ContratoAditivoController extends Controller
 
         try {
             return view('modules.application.contratos.normal.edit')
-                ->withContrato($this->contrato->findContrato($id))
-                ->withCasas($this->casa->all())
-                ->withUnidades($this->unidade->all())
-                ->withUsers($this->user->all())
-                ->withEmpresas($this->empresa->all())
-                ->withGestores($this->contrato->findGestores($id))
-                ->withFiscais($this->contrato->findFiscais($id))
-                ->withEmpresasField($this->contrato->findEmpresas($id));
+                ->with('contrato',$this->contrato->findContrato($id))
+                ->with('casas',$this->casa->all())
+                ->with('unidades',$this->unidade->all())
+                ->with('users',$this->user->all())
+                ->with('empresas',$this->empresa->all())
+                ->with('gestores',$this->contrato->findGestores($id))
+                ->with('fiscais',$this->contrato->findFiscais($id))
+                ->with('empresas_field',$this->contrato->findEmpresas($id));
         } catch (GeneralException $e) {
             notify()->flash($e->getMessage(), 'danger');
             return redirect()->route('unidades.index');

@@ -48,7 +48,7 @@ class CasaController extends Controller
         }
 
         return view('modules.application.cadastros.casa.index')
-            ->withCasas($this->casa->all());
+            ->with('casas',$this->casa->all());
     }
 
     /**
@@ -97,7 +97,7 @@ class CasaController extends Controller
 
         try{
             return view('modules.application.cadastros.casa.edit')
-                ->withCasa($this->casa->findCasa($id));
+                ->with('casa',$this->casa->findCasa($id));
         }catch (GeneralException $e){
             notify()->flash($e->getMessage(),'danger');
             return redirect()->route('casas.index');

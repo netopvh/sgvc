@@ -50,7 +50,7 @@ class UnidadeController extends Controller
         }
 
         return view('modules.application.cadastros.unidades.index')
-            ->withUnidades($this->unidade->getAll());
+            ->with('unidades',$this->unidade->getAll());
     }
 
     /**
@@ -65,7 +65,7 @@ class UnidadeController extends Controller
         }
 
         return view('modules.application.cadastros.unidades.create')
-            ->withCasas($this->casa->all());
+            ->with('casas',$this->casa->all());
     }
 
     /**
@@ -100,8 +100,8 @@ class UnidadeController extends Controller
 
         try{
             return view('modules.application.cadastros.unidades.edit')
-                ->withUnidade($this->unidade->findUnidade($id))
-                ->withCasas($this->casa->all());
+                ->with('unidade',$this->unidade->findUnidade($id))
+                ->with('casas',$this->casa->all());
         }catch (GeneralException $e){
             notify()->flash($e->getMessage(),'danger');
             return redirect()->route('unidades.index');

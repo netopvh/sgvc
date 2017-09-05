@@ -94,10 +94,10 @@ class ContratoController extends Controller
             $data = $this->contrato->getAllWithRelations();
         }
         return view('modules.application.contratos.index')
-            ->withContratos($data)
-            ->withCasas($this->casa->all())
-            ->withTiposContrato(TipoContrato::getConstants())
-            ->withUser(auth()->user()->id);
+            ->with('contratos',$data)
+            ->with('casas',$this->casa->all())
+            ->with('tipos_contrato',TipoContrato::getConstants())
+            ->with('user',auth()->user()->id);
     }
 
 
@@ -115,8 +115,8 @@ class ContratoController extends Controller
 
         try {
             return view('modules.application.contratos.view')
-                ->withContrato($this->contrato->viewContrato($id))
-                ->withTipoPessoa(TipoPessoa::getConstants());
+                ->with('contrato',$this->contrato->viewContrato($id))
+                ->with('tipo_pessoa',TipoPessoa::getConstants());
         } catch (GeneralException $e) {
             notify()->flash($e->getMessage(), 'danger');
             return redirect()->route('contratos.index');
@@ -131,7 +131,7 @@ class ContratoController extends Controller
     public function create()
     {
         return view('modules.application.contratos.create')
-            ->withTipos(TipoContrato::getConstants());
+            ->with('tipos',TipoContrato::getConstants());
     }
 
     /**
@@ -153,10 +153,10 @@ class ContratoController extends Controller
         }
 
         return view('modules.application.contratos.normal.create')
-            ->withCasas($this->casa->all())
-            ->withUnidades($this->unidade->all())
-            ->withUsers($this->user->all())
-            ->withEmpresas($this->empresa->all());
+            ->with('',$this->casa->all())
+            ->with('unidades',$this->unidade->all())
+            ->with('users',$this->user->all())
+            ->with('empresas',$this->empresa->all());
     }
 
     /**
@@ -219,14 +219,14 @@ class ContratoController extends Controller
             }
 
             return view('modules.application.contratos.normal.edit')
-                ->withContrato($contrato)
-                ->withCasas($this->casa->all())
-                ->withUnidades($this->unidade->all())
-                ->withUsers($this->user->all())
-                ->withEmpresas($this->empresa->all())
-                ->withGestores($this->contrato->findGestores($id))
-                ->withFiscais($this->contrato->findFiscais($id))
-                ->withEmpresasField($this->contrato->findEmpresas($id));
+                ->with('contrato',$contrato)
+                ->with('casas',$this->casa->all())
+                ->with('unidades',$this->unidade->all())
+                ->with('users',$this->user->all())
+                ->with('empresas',$this->empresa->all())
+                ->with('gestores',$this->contrato->findGestores($id))
+                ->with('fiscais',$this->contrato->findFiscais($id))
+                ->with('empresas_field',$this->contrato->findEmpresas($id));
         } catch (GeneralException $e) {
             notify()->flash($e->getMessage(), 'danger');
             return redirect()->route('contratos.index');

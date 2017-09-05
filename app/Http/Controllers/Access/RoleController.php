@@ -49,7 +49,7 @@ class RoleController extends Controller
         }
 
         return view('modules.access.roles.index')
-            ->withRoles($this->role->all());
+            ->with('roles',$this->role->all());
     }
 
     /**
@@ -64,8 +64,8 @@ class RoleController extends Controller
         }
 
         return view('modules.access.roles.create')
-            ->withPermissions($this->permission->all())
-            ->withRoleCount($this->role->getCount());
+            ->with('permissions',$this->permission->all())
+            ->with('role_count',$this->role->getCount());
     }
 
     /**
@@ -105,9 +105,9 @@ class RoleController extends Controller
             $role = $this->role->findRole($id);
 
             return view('modules.access.roles.edit')
-                ->withRole($role)
-                ->withRolePermissions($role->perms->pluck('id')->all())
-                ->withPermissions($this->permission->all());
+                ->with('role',$role)
+                ->with('role_permissions',$role->perms->pluck('id')->all())
+                ->with('permissions',$this->permission->all());
 
         }catch (GeneralException $e){
             notify()->flash($e->getMessage(),'danger');

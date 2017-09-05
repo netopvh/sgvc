@@ -56,7 +56,7 @@ class UserController extends Controller
             $data = $this->user->getAllWithRoles();
         }
         return view('modules.access.users.index')
-            ->withUsers($data);
+            ->with('users',$data);
     }
 
 
@@ -73,8 +73,8 @@ class UserController extends Controller
         }
         try{
             return view('modules.access.users.edit')
-                ->withUser($this->user->findUser($id))
-                ->withRoles($this->role->all());
+                ->with('user',$this->user->findUser($id))
+                ->with('roles',$this->role->all());
 
         }catch (GeneralException $e){
             notify()->flash($e->getMessage(),'danger');

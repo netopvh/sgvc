@@ -1,10 +1,10 @@
 @extends('layouts.master')
 @section('scripts-before')
-    <script src="{{ asset('public/assets/js/plugins/pickers/pickadate/picker.js') }}"></script>
-    <script src="{{ asset('public/assets/js/plugins/pickers/pickadate/picker.date.js') }}"></script>
-    <script src="{{ asset('public/assets/js/plugins/forms/mask/jquery-maskmoney/src/jquery.maskMoney.js') }}"></script>
-    <script src="{{ asset('public/assets/js/plugins/notifications/bootbox.min.js') }}"></script>
-    <script src="{{ asset('public/assets/js/modules/contratos.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins/pickers/pickadate/picker.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins/pickers/pickadate/picker.date.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins/forms/mask/jquery-maskmoney/src/jquery.maskMoney.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins/notifications/bootbox.min.js') }}"></script>
+    <script src="{{ asset('assets/js/modules/contratos.js') }}"></script>
 @stop
 @section('content')
     {!! Breadcrumbs::render('contratos.normal') !!}

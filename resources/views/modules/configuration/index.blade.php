@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('scripts-before')
-    <script src="{{ asset('public/assets/js/modules/users.js') }}"></script>
+    <script src="{{ asset('assets/js/modules/users.js') }}"></script>
 @stop
 
 @section('content')

@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('scripts-after')
-    <script type="text/javascript" src="{{ asset('public/assets/js/modules/roles.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/modules/roles.js') }}"></script>
 @stop
 
 @section('content')

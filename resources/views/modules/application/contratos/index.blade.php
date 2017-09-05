@@ -1,8 +1,8 @@
 @extends('layouts.master')
 @section('scripts-before')
-    <script src="{{ asset('public/assets/js/plugins/pickers/pickadate/picker.js') }}"></script>
-    <script src="{{ asset('public/assets/js/plugins/pickers/pickadate/picker.date.js') }}"></script>
-    <script src="{{ asset('public/assets/js/modules/contratos.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins/pickers/pickadate/picker.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins/pickers/pickadate/picker.date.js') }}"></script>
+    <script src="{{ asset('assets/js/modules/contratos.js') }}"></script>
 @stop
 @section('content')
     {!! Breadcrumbs::render('contratos.index') !!}
@@ -21,51 +21,48 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="table-responsive">
-                        <div class="panel-body">
-                            @if (notify()->ready())
-                                <div class="alert alert-{{ notify()->type() }} no-border">
-                                    <button type="button" class="close" data-dismiss="alert"><span>&times;</span><span
-                                                class="sr-only">Close</span></button>
+                    <div class="panel-body">
+                        @if (notify()->ready())
+                            <div class="alert alert-{{ notify()->type() }} no-border">
+                                <button type="button" class="close" data-dismiss="alert"><span>&times;</span><span
+                                            class="sr-only">Close</span></button>
                                 <span class="text-semibold"><i
                                             class="icon-{{ notify()->type() == 'success'?'checkmark5':'warning' }}"></i></span> {{ notify()->message() }}
-                                    .
-                                </div>
-                            @endif
-                            <a href="{{ route('contratos.create') }}" class="btn btn-primary"><i
-                                        class="icon-plus-circle2"></i>
-                                Cadastrar</a>
-                            @if(Entrust::can('manage-aditivos') || user_role() == true)
-                                <a href="{{ route('aditivos.index') }}" class="btn btn-primary"><i
-                                            class="icon-clipboard2"></i>
-                                    Aditivar Contrato</a>
-                            @endif
-                            <a href="{{ route('contratos.excel') }}" class="btn btn-primary"><i
-                                        class="icon-file-excel"></i>
-                                Exportar Excel</a>
-                            <fieldset>
-                                <legend>Pesquisa Contrato</legend>
-                                @include('modules.application.contratos.search')
-                            </fieldset>
-                        </div>
+                                .
+                            </div>
+                        @endif
+                        <a href="{{ route('contratos.create') }}" class="btn btn-primary"><i
+                                    class="icon-plus-circle2"></i>
+                            Cadastrar</a>
+                        @if(Entrust::can('manage-aditivos') || user_role() == true)
+                            <a href="{{ route('aditivos.index') }}" class="btn btn-primary"><i
+                                        class="icon-clipboard2"></i>
+                                Aditivar Contrato</a>
+                        @endif
+                        <a href="{{ route('contratos.excel') }}" class="btn btn-primary"><i
+                                    class="icon-file-excel"></i>
+                            Exportar Excel</a>
+                        <fieldset>
+                            <legend>Pesquisa Contrato</legend>
+                            @include('modules.application.contratos.search')
+                        </fieldset>
                     </div>
-                    <div class="table-responsive">
-                        <table class="table table-bordered table-condensed">
-                            <thead>
-                            <tr>
-                                <th width="130">Número/Ano</th>
-                                <th>Contratado</th>
-                                <th>Contratante</th>
-                                <th>Unidade / Setor</th>
-                                <th>Vencimento</th>
-                                <th width="50">Status</th>
-                                <th width="40">Aditivado?</th>
-                                <th class="text-center" width="80">Ações</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @foreach($contratos as $contrato)
-                                    <!-- Verifica se o usuário pode visualizar o contrato -->
+                    <table class="table table-bordered table-condensed">
+                        <thead>
+                        <tr>
+                            <th width="130">Número/Ano</th>
+                            <th>Contratado</th>
+                            <th>Contratante</th>
+                            <th>Unidade / Setor</th>
+                            <th>Vencimento</th>
+                            <th width="50">Status</th>
+                            <th width="40">Aditivado?</th>
+                            <th class="text-center" width="80">Ações</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($contratos as $contrato)
+                            <!-- Verifica se o usuário pode visualizar o contrato -->
                             @if(user_all() == true || in_array($user, $contrato->gestores->pluck('id')->toArray()) || in_array($user, $contrato->fiscais->pluck('id')->toArray()))
                                 <tr>
                                     <td>
@@ -117,13 +114,13 @@
                                                                     class="icon-eye"></i> Visualizar</a></li>
                                                     @if(!empty($contrato->arquivo))
                                                         <li>
-                                                            <a href="{{ url('public/uploads/files') }}/{{ $contrato->arquivo }}"
+                                                            <a href="{{ url('uploads/files') }}/{{ $contrato->arquivo }}"
                                                                target="_blank"><i
                                                                         class="icon-file-text2"></i> Contrato</a></li>
                                                     @endif
                                                     @if($contrato->aditivado == 'S')
                                                         <li>
-                                                            <a href="{{ url('public/uploads/files') }}/{{ $contrato->aditivos->last()->arquivo }}"
+                                                            <a href="{{ url('uploads/files') }}/{{ $contrato->aditivos->last()->arquivo }}"
                                                                target="_blank"><i
                                                                         class="icon-file-plus2"></i> Termo Aditivo</a>
                                                         </li>
@@ -138,10 +135,9 @@
                                     </td>
                                 </tr>
                             @endif
-                            @endforeach
-                            </tbody>
-                        </table>
-                    </div>
+                        @endforeach
+                        </tbody>
+                    </table>
                     <div class="text-right">{{ $contratos->links() }}</div>
                 </div>
             </div>
