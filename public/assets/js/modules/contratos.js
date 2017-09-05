@@ -91,6 +91,14 @@ $(function() {
         });
     });
 
+
+    //Local
+    var url = window.location.protocol + '//' + window.location.host + '/';
+    //Production
+    //var url = window.location.protocol + '//' + window.location.host + '/sgvc/public/';
+
+    console.log(url);
+
     //DEFINE O TIPO DE CONTRATO A SER CADASTRADO
     var tipo = $('#tipo');
 
@@ -108,7 +116,7 @@ $(function() {
     $("select[name=casa_id]").change(function () {
         var casa_id = $(this).val();
         if (casa_id){
-            $.get('units/' + casa_id, function (unidades) {
+            $.get(url + 'units/' + casa_id, function (unidades) {
                 if (unidades.length == 0){
                     $("select[name=unidade_id]").empty();
                     $('.select').select2("val","");
