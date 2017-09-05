@@ -43,5 +43,6 @@ class ChangeStatus extends Command
         $contratos = DB::table('contratos')
             ->whereDate('encerramento', $hoje)
             ->update(['status' => 'F']);
+        return true;
     }
 }

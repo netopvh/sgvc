@@ -35,7 +35,7 @@ class ConfigController extends Controller
         $data = ['fq_90' => settings('fq_90'), 'fq_60' => settings('fq_60'), 'fq_30' => settings('fq_30')];
         
         return view('modules.configuration.index')
-            ->withSetting($data);
+            ->with('setting',$data);
     }
 
 

@@ -153,7 +153,7 @@ class ContratoController extends Controller
         }
 
         return view('modules.application.contratos.normal.create')
-            ->with('',$this->casa->all())
+            ->with('casas',$this->casa->all())
             ->with('unidades',$this->unidade->all())
             ->with('users',$this->user->all())
             ->with('empresas',$this->empresa->all());

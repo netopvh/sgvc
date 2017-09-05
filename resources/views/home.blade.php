@@ -61,13 +61,13 @@
                                         </tr>
                                     @else
                                         <tr>
-                                            <td colspan="6" class="text-center">Sem contratos Próximo do Vencimento!</td>
+                                            <td colspan="7" class="text-center">Sem contratos Próximo do Vencimento!</td>
                                         </tr>
                                     @endif
                                 @endforeach
                             @else
                                 <tr>
-                                    <td colspan="5" class="text-center">Sem contratos Próximo do Vencimento!</td>
+                                    <td colspan="7" class="text-center">Sem contratos Próximo do Vencimento!</td>
                                 </tr>
                             @endif
                             </tbody>

@@ -27,12 +27,12 @@ class HomeController extends Controller
     /**
      * Show the application dashboard.
      *
-     * @return \Illuminate\Http\Response
+     * @return
      */
     public function index()
     {
         return view('home')
-            ->withContratos($this->contrato->getAllByVencimento())
-            ->withUser(auth()->user()->id);
+            ->with('contratos',$this->contrato->getAllByVencimento())
+            ->with('user',auth()->user()->id);
     }
 }
